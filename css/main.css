@@ -1,0 +1,11 @@
+h1{
+  position: absolute;
+  text-align: center;
+  color: antiquewhite;
+  
+}
+h1.first{
+  top: 15rem;
+  left: 10rem;
+  
+}
