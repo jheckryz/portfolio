@@ -1,11 +1,54 @@
-h1{
-  position: absolute;
-  text-align: center;
-  color: antiquewhite;
+:root{
+  --base-color: white;
+  --base-variant: #e8e9ed;
+  --text-color: #111528;
+  --secondary-text:#232738;
+  --primary-color: #3a435d;
+  --accent-color:#0071ff;
+  }
+  .darkmode{
+    --base-color: black;
+  --base-variant: #02081d;
+  --text-color: #ffffff;
+  --secondary-text:#7f8084;
+  --primary-color: #3b3e45;
+  --accent-color:#0071ff;
+  }
   
-}
-h1.first{
-  top: 15rem;
-  left: 10rem;
-  
-}
+  *{
+  margin: 0;
+  padding: 0;
+  }
+  html{
+  font-family: Poppins;
+  }
+  body{
+  min-height: 100vh;
+  background-color: var(--base-color);
+  color: var(--text-color);
+  }
+  #theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+  #theme-switch svg{
+    fill: var(--primary-color);
+  }
+  #theme-switch svg:last-child{
+    display: none;
+  }
+  .darkmode #theme-switch svg:first-child{
+    display: none;
+  }
+  .darkmode #theme-switch svg:last-child{
+    display: block;
+  }
