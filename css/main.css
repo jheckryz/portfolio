@@ -7,7 +7,7 @@
   --accent-color:#0071ff;
   }
   .darkmode{
-    --base-color: black;
+    --base-color: #00020B;
   --base-variant: #02081d;
   --text-color: #ffffff;
   --secondary-text:#7f8084;
@@ -53,45 +53,116 @@
     display: block;
   }
 
+  header#home {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--base-color);
+  }
+  
   .home-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 4rem 2rem;
-    flex-wrap: wrap;
-    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
   }
   
   .home-left {
     flex: 1;
+    margin-left: -5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.5rem;
   }
   
-  .profile-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--primary-color);
+  .home-left h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  .home-left h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+  }
+  
+  .home-left p {
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.6;
+    color: var(--secondary-text);
   }
   
   .home-right {
-    flex: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 60%;
+    z-index: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    pointer-events: none;
   }
   
   #mode-image {
-    max-width: 100%;
-    width: 300px;
+    width: 100%;
     height: auto;
-    border-radius: 12px;
-    transition: 0.3s ease;
+    object-fit: cover;
+    max-width: 700px;
+    opacity: 0.95;
   }
+  
+  .profile-image {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .cta-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #005ae0;
+  }
+  
+  .cta-button.outline {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+  }
+  
+  .cta-button.outline:hover {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
 
 .navbar {
   background-color: var(--nav-bg, #1f1f1f);
