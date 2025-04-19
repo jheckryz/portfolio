@@ -1,0 +1,163 @@
+:root {
+    --base-color: #f9f3df;
+    --base-variant: #e8e9ed;
+    --text-color: #111528;
+    --secondary-text: #232738;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+  }
+  
+  .darkmode {
+    --base-color: #00020b;
+    --base-variant: #02081d;
+    --text-color: #ffffff;
+    --secondary-text: #7f8084;
+    --primary-color: #3b3e45;
+    --accent-color: #0071ff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--base-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .navbar {
+    background-color: var(--nav-bg, #1f1f1f);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #00ffcc;
+  }
+  
+  #theme-switch {
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+  }
+  
+  #theme-switch svg {
+    fill: var(--primary-color);
+  }
+  
+  #theme-switch svg:last-child {
+    display: none;
+  }
+  
+  .darkmode #theme-switch svg:first-child {
+    display: none;
+  }
+  
+  .darkmode #theme-switch svg:last-child {
+    display: block;
+  }
+  
+  .contact-section {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: var(--base-variant);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  
+  .contact-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 1rem;
+    color: var(--text-color);
+  }
+  
+  .darkmode input,
+  .darkmode textarea {
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #444;
+  }
+  
+  button[type="submit"] {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0058cc;
+  }
+  
+  .form-status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  

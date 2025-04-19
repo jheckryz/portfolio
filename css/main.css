@@ -163,7 +163,12 @@
     color: white;
   }
   
-
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
 .navbar {
   background-color: var(--nav-bg, #1f1f1f);
   padding: 1rem 2rem;
@@ -203,4 +208,11 @@
 
 .nav-links a:hover {
   color: #00ffcc;
+}
+
+footer {
+  background-color: var(--base-variant);
+  padding: 0.8rem;
+  text-align: center;
+  color: var(--text-color);
 }
