@@ -69,17 +69,18 @@
     color: #00ffcc;
   }
   
-  #theme-switch {
-    height: 40px;
-    width: 40px;
+  #theme-switch{
+    height: 50px;
+    width: 50px;
     padding: 0;
     border-radius: 50%;
     background-color: var(--base-variant);
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    border: none;
+    position: fixed;
+    top: 10px;
+    right: 20px;
   }
   
   #theme-switch svg {
