@@ -12,7 +12,7 @@ function initVanta(isDark) {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    chaos: 7.00,
+    chaos: 5.00,
     color: isDark ? 0xe08f24 : 0x0e0e0e, // Orange (dark) vs Blue (light)
     backgroundColor: isDark ? 0x0e0e0e : 0xf0f0f0
   });
@@ -65,3 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.getElementById('hamburger').addEventListener('click', () => {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('open');
+});
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navItems = navLinks.querySelectorAll('li');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  if (navLinks.classList.contains('active')) {
+    navItems.forEach((li, index) => {
+      li.style.animation = `slideIn 0.4s ease-out forwards`;
+      li.style.animationDelay = `${index * 0.1}s`;
+    });
+  } else {
+    // Reset animation so it plays again next time
+    navItems.forEach(li => {
+      li.style.animation = 'none';
+    });
+  }
+});
