@@ -6,8 +6,8 @@
   <title>Jheckryz Osio</title>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js"></script>
 </head>
@@ -22,23 +22,26 @@
       <span></span>
     </div>
     <div class="top-bar">
-      <div class="logo"><img src="images/Logo.png" alt="logo"></div>
+      <div class="logo">
+        <img id="logo" src="images/Logo.png" alt="logo">
+      </div>
+
       <nav>
-        <ul>
-          <div class="theme-toggle" id="theme-switch">
-            <div class="circle"></div>
-          
-          </div>
+        <div class="theme-toggle" id="theme-switch">
+          <div class="circle"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
           <li class="active"><a href="index.html">Home</a></li>
           <li><a href="about.html">About Me</a></li>
           <li><a href="techstack.html">Tech Stack</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Your intro and content here (unchanged) -->
     <section class="intro">
       <div class="name fade-in-bottom name-delay">
         <h1>Jheckryz<br>Osio</h1>
@@ -49,18 +52,16 @@
           <img src="images/portrait4.jpg" alt="Profile Picture"/>
         </div>
       </div>
-      
-      <!-- Counter and arrows at bottom right -->
+
       <div class="bottom-right-controls">
         <div class="counter">
-          <span class="current">01</span><span class="total">/04</span>
+          <span class="current">01</span><span class="total">/03</span>
         </div>
         <div class="arrow-buttons">
           <button class="arrow-button">←</button>
           <a href="about.html" class="arrow-button">→</a>
         </div>
       </div>
-      
     </section>
 
     <section class="cards fade-in-bottom cards-delay">
@@ -72,7 +73,7 @@
             <div class="card-arrow">↗</div>
           </div>
           <p>
-            I’m a student at St. Dominic College of Asia studying Bachelor of Science in Information Technology. If you want to know more about me and what I do, just go ahead and go to the About Me page or click this arrow.
+            I’m a student at St. Dominic College of Asia studying Bachelor of Science in Information Technology.
           </p>
         </div>
       </a>
