@@ -678,13 +678,33 @@ body.lightmode .card h4{
     margin: 0 auto;
   }
 
-  .counter {
-    position: static;
-    margin-top: 20px;
-    align-self: flex-end;
-    text-align: right;
-    width: 100%;
+.counter {
+    font-size: 2.5rem;
   }
+
+  .bottom-right-controls{
+    background: #0e0e0e;
+    margin-bottom: -35px;
+    margin-right: -55px;
+  }
+
+   body.lightmode .bottom-right-controls{
+    background: #f0f0f0;
+   }
+
+  footer {
+    padding: 50px 10px;
+  }
+
+  .navigation {
+    background: #0e0e0e;
+    z-index: 1000;
+    padding-bottom: 5px;
+  }
+  
+   body.lightmode .navigation{
+    background: #f0f0f0;
+   }
 
   .nav-links li:nth-child(1) { animation-delay: 0.1s; }
   .nav-links li:nth-child(2) { animation-delay: 0.2s; }
