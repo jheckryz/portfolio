@@ -491,6 +491,7 @@ body.lightmode .card h4{
       align-items: center;
       text-align: center;
       padding: 20px 40px;
+      margin-top: 150px;
     }
 
     .right-intro {
@@ -504,9 +505,13 @@ body.lightmode .card h4{
       grid-template-columns: 1fr;
       padding: 0 20px;
       margin-left: 0;
-      
+     background-color: rgba(31, 31, 31, 0.3);
       
     }
+
+     body.lightmode .cards {
+   background-color: rgba(196, 196, 196, 0.3);
+  }
   }
 
 
@@ -668,8 +673,13 @@ body.lightmode .card h4{
     margin-left: 0;
     margin-top: 40px;
     gap: 20px;
+    background-color: rgba(31, 31, 31, 0.2);
   }
 
+body.lightmode .cards{
+    color: #000000;
+     background-color: rgba(196, 196, 196, 0.2);
+}
   .card {
     align-items: flex-start;
     padding: 30px 20px;

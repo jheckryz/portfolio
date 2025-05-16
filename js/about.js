@@ -12,8 +12,8 @@ function initVanta(isDark) {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    chaos: 5.00,
-    color: isDark ? 0xe08f24 : 0x353333,
+    chaos: 4.00,
+    color: isDark ? 0xe08f24 : 0x11a138,
     backgroundColor: isDark ? 0x0e0e0e : 0xf0f0f0
   });
 }

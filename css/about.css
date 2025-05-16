@@ -166,6 +166,23 @@ nav ul li.active a::after {
   margin-top: -100px; /* remove negative margin */
 }
 
+.card-text {
+  grid-column: 1 / -1;
+
+  color: #ffffff; /* or any color you prefer */
+  stop-opacity: 1;
+}
+
+body.lightmode .card-text {
+  color: #111111; /* a contrasting color for light mode */
+}
+
+
+
+.card-text p + p {
+  margin-top: 1rem; /* adjust as needed */
+}
+
 .counter-controls {
     position: fixed;
     bottom: 40px;
@@ -378,8 +395,8 @@ body.lightmode .counter-controls{
     max-width: 90%;
     margin: 0 auto;
     text-align: center;
-    background: #333;
-    opacity: 0.5;
+    background-color: rgba(31, 31, 31, 0.5); /* Black with 50% opacity */
+  color: inherit; /* Keeps text color normal */
     border-radius: 10px;
     padding: 20px;
     
@@ -391,5 +408,24 @@ body.lightmode .counter-controls{
   }
     body.lightmode .card{
     color: #000000;
+     background-color: rgba(196, 196, 196, 0.5);
    }
+
+.top-text p{
+  font-size: 1rem;
+    color: inherit;
+    opacity: 0.8;
+    text-align: right;
+    margin-top: -70px;
+}
+
+  }
+@media (max-width: 1024px) and (min-width: 769px) {
+    header {
+      padding: 30px 40px;
+    }
+
+    .card {
+      margin-top: 30px;
+    }
   }
