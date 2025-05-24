@@ -144,6 +144,24 @@
   gap: 20px;
 }
 
+.custom-footer {
+  background-color: transparent;
+  text-align: center;
+  padding-top: 0.2rem;  /* Less top padding */
+  padding-bottom: 0.2rem;
+}
+
+.bootstrap-icons-wrapper {
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+.custom-footer-text {
+  margin-top: -15px;
+  margin-bottom: -10px;
+}
+
+
   .bottom-right-controls {
     position: fixed;
     bottom: 40px;
@@ -192,7 +210,7 @@
     padding: 0 0rem;
   }
 
-  .card {
+  .cardinfo {
     background: transparent;
     border: transparent;
     padding: 50px;
@@ -204,7 +222,7 @@
     gap: 20px;
   }
 
-  .card h4 {
+  .cardinfo h4 {
     font-size: 0.9rem;
     color: #ccc;
     font-weight: normal;
@@ -219,7 +237,7 @@
     align-items: start;
   }
 
-  .card h3 {
+  .cardinfo h3 {
     font-size: 2.1rem;
     font-weight: bold;
     line-height: 1.2;
@@ -229,7 +247,7 @@
   
   }
 
-  .card p {
+  .cardinfo p {
     font-size: 1rem;
     line-height: 1.6;
     color: #ccc;
@@ -247,7 +265,7 @@
     position: relative;
   }
 
-  .card-link:hover .card {
+  .card-link:hover .cardinfo {
     border-color: #fff;
     background: rgba(255, 255, 255, 0.05);
     transition: 0.3s;
@@ -261,7 +279,7 @@
   }
 
   footer {
-    padding: 20px 50px;
+    padding: 10px 10px;
     font-size: 0.8rem;
     color: #888;
     text-align: center;
@@ -395,7 +413,7 @@
     color: black;
   }
 
-body.lightmode .card h4{
+body.lightmode .cardinfo h4{
     color: #111;
   }
 
@@ -404,11 +422,11 @@ body.lightmode .card h4{
     color: black;
   }
 
-  body.lightmode .card {
+  body.lightmode .cardinfo {
     color: #111;
   }
 
-  body.lightmode .card p {
+  body.lightmode .cardinfo p {
     color: #333;
   }
 
@@ -549,11 +567,11 @@ body.lightmode .card h4{
       height: 150px;
     }
 
-    .card h3 {
+    .cardinfo h3 {
       font-size: 1.5rem;
     }
 
-    .card p {
+    .cardinfo p {
       font-size: 0.9rem;
     }
 
@@ -680,7 +698,7 @@ body.lightmode .cards{
     color: #000000;
      background-color: rgba(196, 196, 196, 0.2);
 }
-  .card {
+  .cardinfo {
     align-items: flex-start;
     padding: 30px 20px;
     width: 90%;
