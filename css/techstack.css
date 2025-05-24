@@ -494,6 +494,14 @@ body.lightmode .item {
     color: #111;
   }
 
+header{
+  background: #0e0e0e;
+}
+
+ body.lightmode header {
+    background: #f0f0f0;
+  }
+
   .techstack-section {
     padding: 40px 20px;
   }

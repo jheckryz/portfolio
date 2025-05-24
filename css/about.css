@@ -361,6 +361,14 @@ body.lightmode .counter .total {
     opacity: 1;
   }
 
+header{
+  background: #0e0e0e;
+}
+
+ body.lightmode header {
+    background: #f0f0f0;
+  }
+
   body.lightmode .nav-links {
     background: #fff;
   }
