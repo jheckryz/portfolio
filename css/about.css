@@ -1,19 +1,35 @@
+/* css/about.css
+   Updated: carousel max-width reduced; cleaned formatting and wrapped long lines
+*/
+
+/* --- fonts --- */
 @font-face {
   font-family: 'Nippo';
   src: url('Nippo-Regular.woff2');
 }
 
+/* --- reset / base --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
 body {
   background: #0e0e0e;
   color: white;
-  font-family: 'Helvetica Neue', sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  font-family: 'Inter',
+               'Helvetica Neue',
+               sans-serif;
+  transition: background 0.3s ease,
+              color 0.3s ease;
 }
 
 body.lightmode {
@@ -21,6 +37,7 @@ body.lightmode {
   color: #111;
 }
 
+/* --- header --- */
 header {
   padding: 40px 80px;
   position: sticky;
@@ -46,27 +63,28 @@ nav {
   gap: 30px;
 }
 
-nav ul {
+/* --- nav links --- */
+.nav-links {
   list-style: none;
   display: flex;
   gap: 30px;
   margin-bottom: 0;
 }
 
-nav ul li {
+.nav-links li {
   position: relative;
 }
 
-nav ul li a {
+.nav-links a {
   color: currentColor;
   text-decoration: none;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 0.3s ease;
   position: relative;
   padding-bottom: 2px;
 }
 
-nav ul li a::after {
+.nav-links a::after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -78,23 +96,23 @@ nav ul li a::after {
   transition: width 0.4s ease;
 }
 
-nav ul li a:hover {
+.nav-links a:hover {
   opacity: 1;
 }
 
-nav ul li a:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-nav ul li.active a {
+.nav-links li.active a {
   opacity: 1;
 }
 
-nav ul li.active a::after {
+.nav-links li.active a::after {
   width: 100%;
 }
 
-/* Theme Toggle */
+/* --- theme toggle --- */
 .theme-toggle {
   width: 40px;
   height: 20px;
@@ -120,7 +138,7 @@ nav ul li.active a::after {
   transform: translateX(20px);
 }
 
-/* About Section */
+/* --- about section / card --- */
 .about-section {
   padding: 60px 80px;
   animation: slideUpFade 1s ease-out;
@@ -128,10 +146,11 @@ nav ul li.active a::after {
 
 .card {
   display: grid;
-    grid-template-columns: 1fr 0.4fr;
+  grid-template-columns: 1fr 0.4fr;
   background: transparent;
   color: inherit;
-  max-width: 600px;
+  max-width: 900px;
+  gap: 1rem;
 }
 
 .card h2 {
@@ -140,12 +159,25 @@ nav ul li.active a::after {
 }
 
 .card p {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   text-justify: auto;
   color: inherit;
+  line-height: 1.5;
 }
 
-/* Controls */
+.card-text {
+  grid-column: 1 / -1;
+  color: #ffffff;
+}
+
+body.lightmode .card-text {
+color: #000000;
+}
+.card-text p + p {
+  margin-top: 1rem;
+}
+
+/* --- bottom-right controls --- */
 .bottom-right-controls {
   display: flex;
   flex-direction: column;
@@ -162,79 +194,57 @@ nav ul li.active a::after {
   color: inherit;
   opacity: 0.8;
   text-align: right;
-  
-  margin-top: -100px; /* remove negative margin */
-}
-
-.card-text {
-  grid-column: 1 / -1;
-
-  color: #ffffff; /* or any color you prefer */
-  stop-opacity: 1;
-}
-
-body.lightmode .card-text {
-  color: #111111; /* a contrasting color for light mode */
-}
-
-
-
-.card-text p + p {
-  margin-top: 1rem; /* adjust as needed */
 }
 
 .counter-controls {
-    position: fixed;
-    bottom: 40px;
-    right: 60px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 10;
-  }
-  
-  .counter {
-    font-size: 4rem;
-    font-weight: 700;
-    font-family: 'Nippo';
-    line-height: 1;
-  }
-  
-  .counter .total {
-    font-size: 1.2rem;
-    opacity: 0.8;
-    font-family: 'Nippo';
-    margin-left: 5px;
-    color: #fff;
-  }
- .arrow-buttons {
-    display: flex;
-    gap: 10px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+}
 
-  .arrow-button {
-    color: white;
-    background: transparent;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: background 0.3s, color 0.3s;
-    text-decoration: none; /* Ensure no underline */
-  }
+.counter {
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: 'Nippo';
+  line-height: 1;
+}
 
+.counter .total {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-family: 'Nippo';
+  margin-left: 5px;
+  color: #fff;
+}
 
-  .arrow-button:hover {
-    background: white;
-    color: black;
-  }
+.arrow-buttons {
+  display: flex;
+  gap: 10px;
+}
 
-/* Light Mode Variants */
+.arrow-button {
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s,
+              color 0.3s;
+  text-decoration: none;
+}
+
+.arrow-button:hover {
+  background: white;
+  color: black;
+}
+
 body.lightmode .arrow-button {
   border-color: #111;
   color: #000;
@@ -250,7 +260,7 @@ body.lightmode .counter .total {
   color: #333;
 }
 
-/* Vanta Background */
+/* --- Vanta background --- */
 #vanta-bg {
   position: fixed;
   top: 0;
@@ -260,7 +270,153 @@ body.lightmode .counter .total {
   z-index: -1;
 }
 
-/* Animation */
+.works {
+  max-width: 900px;
+  margin: 4rem auto;
+  text-align: left;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease,
+              transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.works.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.works-heading {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* <<<< adjusted smaller carousel: max-width = 360px >>>> */
+.carousel-container {
+  width: 100%;
+  max-width: 360px; /* reduced size */
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(31,31,31,0.5);
+  padding: 8px;
+}
+
+/* viewport and track */
+.carousel-viewport {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 8px; /* reduced gap */
+  transition: transform 0.45s cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* prev/next controls (slightly smaller) */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: 0;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+
+.carousel-prev:focus,
+.carousel-next:focus {
+  outline: 2px solid #fff;
+}
+
+/* dots & meta (wrapped lines, no long lines) */
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  border: 0;
+}
+
+.carousel-dot.active {
+  background: #11a138;
+}
+
+.carousel-meta {
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.carousel-title {
+  font-weight: 700;
+  margin: 6px 0;
+  font-size: 1.05rem;
+}
+
+.carousel-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+}
+
+/* --- responsive tweaks --- */
+@media (max-width: 520px) {
+  .carousel-container {
+    max-width: 92vw;
+    padding: 6px;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel-title {
+    font-size: 1rem;
+  }
+}
+
+/* --- animations & hamburger --- */
 @keyframes slideUpFade {
   0% {
     opacity: 0;
@@ -287,7 +443,7 @@ body.lightmode .counter .total {
   }
 }
 
-/* Hamburger (mobile) */
+/* --- hamburger (mobile) --- */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -307,39 +463,37 @@ body.lightmode .counter .total {
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .hamburger.open span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-
+/* --- mobile adjustments (wrapped / no long lines) --- */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
     position: absolute;
-    margin-top: 22px;
-    margin-right: 10px;
     right: 20px;
     top: 30px;
   }
 
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  margin-right: -70px;
-  position: relative;
-}
+  .top-bar {
+    padding: 0 20px;
+    position: relative;
+  }
 
-.logo {
-  margin-left: -70px;
-}
-.theme-toggle {
-  margin-right: 50px;
-}
+  .logo {
+    margin-left: 0;
+  }
+
+  .theme-toggle {
+    margin-right: 0;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
@@ -361,20 +515,12 @@ body.lightmode .counter .total {
     opacity: 1;
   }
 
-header{
-  background: #0e0e0e;
-}
+  header {
+    background: #0e0e0e;
+  }
 
- body.lightmode header {
+  body.lightmode header {
     background: #f0f0f0;
-  }
-
-  body.lightmode .nav-links {
-    background: #fff;
-  }
-
-  body.lightmode .nav-links li a {
-    color: #111;
   }
 
   .about-section {
@@ -383,57 +529,43 @@ header{
     justify-content: center;
   }
 
-.counter {
-    font-size: 2.5rem;
-  }
-
-  .counter-controls{
-    background: #0e0e0e;
-    margin-bottom: -35px;
-    margin-right: -55px;
-  }
-
-body.lightmode .counter-controls{
-    background: #f0f0f0;
-   }
-
-
   .card {
     display: block;
     max-width: 90%;
     margin: 0 auto;
     text-align: center;
-    background-color: rgba(31, 31, 31, 0.5); /* Black with 50% opacity */
-  color: inherit; /* Keeps text color normal */
+    background-color: rgba(31,31,31,0.5);
     border-radius: 10px;
     padding: 20px;
-    
-    color: #ffffff;
+    color: inherit;
   }
 
   .card h2 {
     opacity: 1;
+    font-size: 2rem;
   }
-    body.lightmode .card{
-    color: #000000;
-     background-color: rgba(196, 196, 196, 0.5);
-   }
 
-.top-text p{
-  font-size: 1rem;
-    color: inherit;
-    opacity: 0.8;
-    text-align: right;
-    margin-top: -70px;
+  .counter {
+    font-size: 2.5rem;
+  }
+
+  .counter-controls {
+    background: #0e0e0e;
+    margin-bottom: -35px;
+    margin-right: -55px;
+  }
+
+  body.lightmode .counter-controls {
+    background: #f0f0f0;
+  }
 }
 
-  }
 @media (max-width: 1024px) and (min-width: 769px) {
-    header {
-      padding: 30px 40px;
-    }
-
-    .card {
-      margin-top: 30px;
-    }
+  header {
+    padding: 30px 40px;
   }
+
+  .card {
+    margin-top: 30px;
+  }
+}

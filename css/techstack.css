@@ -286,17 +286,18 @@ body.lightmode .item {
   padding-top: 10px;          /* adjust as needed */
 }
 
-
-
+/* Grid for items — responsive: fills columns then rows (works well with JS neighbor detection) */
 .items {
-  display: flex;
-  gap: 0.4rem;
-  perspective: calc(var(--index) * 35);
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-auto-flow: column; /* fill top-to-bottom then create new columns */
+  grid-template-rows: repeat(2, auto); /* prefer 2 rows on wide screens but will reflow on smaller screens */
+  grid-auto-columns: 140px; /* column base width */
+  gap: 1rem;
+  justify-content: center; /* center grid block */
+  perspective: 1000px;
 }
 
+/* Item base */
 .item {
   position: relative;
   width: 140px;
@@ -305,8 +306,8 @@ body.lightmode .item {
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 1.25s var(--transition), filter 3s var(--transition), width 1.25s var(--transition);
-  will-change: transform, filter, rotateY, width;
+  transition: transform 0.45s var(--transition), filter 0.45s var(--transition), width 0.45s var(--transition), height 0.45s var(--transition);
+  will-change: transform, filter;
   filter: grayscale(1) brightness(.5);
   display: flex;
   flex-direction: column;
@@ -314,6 +315,7 @@ body.lightmode .item {
   justify-content: space-between;
   padding: 15px 10px;
   text-align: center;
+  transform-style: preserve-3d;
 }
 
 .item img {
@@ -324,7 +326,6 @@ body.lightmode .item {
   transition: transform 0.3s ease;
 }
 
-
 .item p {
   font-size: 1rem;
   color: white;
@@ -333,79 +334,86 @@ body.lightmode .item {
   text-align: center;
 }
 
-.item:hover,
-.item:focus,
-.item:active {
-  transform: scale(1.15);
-  filter: grayscale(0) brightness(1);
-  z-index: 10;
-  outline: none;
-}
-
+/* Gentle hover fallback (for no-JS users, non-invasive) */
 .items .item:hover {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 10));
+  filter: grayscale(0) brightness(1);
+  transform: translateY(-6px) scale(1.03);
+  z-index: 6;
 }
 
-.item::before, .item::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 20px;
-  right: calc(var(--index) * -1);
+/* ======= Class-based states (JS toggles these) ======= */
+
+/* Hovered item (stronger push forward) */
+.items .item.hovered {
+  filter: inherit;
+  transform: scale(1.12) translateZ(calc(var(--index) * 6));
+  z-index: 12;
 }
 
-.item::after {
-  left: calc(var(--index) * -1);
+/* Neighbors — only applied to true neighbors by JS */
+.items .item.tilt-left {
+  filter: inherit;
+  transform: translateX(-12px) rotateY(-12deg) scale(1.04);
+  z-index: 7;
+}
+.items .item.tilt-right {
+  filter: inherit;
+  transform: translateX(12px) rotateY(12deg) scale(1.04);
+  z-index: 7;
+}
+.items .item.tilt-up {
+  filter: inherit;
+  transform: translateY(-12px) rotateX(-12deg) scale(1.04);
+  z-index: 7;
+}
+.items .item.tilt-down {
+  filter: inherit;
+  transform: translateY(12px) rotateX(12deg) scale(1.04);
+  z-index: 7;
 }
 
-/* Right Hover Effects */
-.items .item:hover + * {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
-  z-index: -1;
-}
-.items .item:hover + * + * {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
-  z-index: -2;
-}
-.items .item:hover + * + * + * {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
-  z-index: -3;
-}
-.items .item:hover + * + * + * + * {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * .6)) rotateY(15deg);
-  z-index: -4;
+/* SELECTED (center enlarge) */
+.items .item.selected {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  margin: 0;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 10001;
+  background-color: #111;
+  filter: grayscale(0) brightness(1);
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* Left Hover Effects */
-.items .item:has(+ :hover) {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
-}
-.items .item:has(+ * + :hover) {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
-}
-.items .item:has(+ * + * + :hover) {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
-}
-.items .item:has(+ * + * + * + :hover) {
-  filter: inherit;
-  transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
+/* overlay/backdrop used during selection */
+.items-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 10000;
+  opacity: 0;
+  animation: overlayFadeIn .18s ease forwards;
 }
 
-.items .item:active, .items .item:focus {
-  width: 230px;
-  
-  filter: inherit;
-  z-index: 100;
-  transform: translateZ(calc(var(--index) * 10));
-  margin: 0 .05vw;
+/* prevent page scroll while selected */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Smooth restore when unfocused */
+.items .item:not(:active):not(:focus) {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  box-shadow: none;
+}
+
+/* small helper to ensure hovered & tilts don't stack weirdly on mobile */
+@media (hover: none) {
+  .items .item:hover { transform: none; filter: grayscale(1) brightness(.5); }
 }
 
 /* Animations */
@@ -443,14 +451,19 @@ body.lightmode .item {
   }
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
-    header {
-      padding: 30px 40px;
-    }
-
-.item{
-  filter: grayscale(0)
+@keyframes overlayFadeIn {
+  to { opacity: 1; }
 }
+
+/* mid breakpoint */
+@media (max-width: 1024px) and (min-width: 769px) {
+  header {
+    padding: 30px 40px;
+  }
+
+  .item {
+    filter: grayscale(0);
+  }
 }
 
 /* Responsive */
@@ -494,11 +507,11 @@ body.lightmode .item {
     color: #111;
   }
 
-header{
-  background: #0e0e0e;
-}
+  header {
+    background: #0e0e0e;
+  }
 
- body.lightmode header {
+  body.lightmode header {
     background: #f0f0f0;
   }
 
@@ -514,7 +527,7 @@ header{
     font-size: 0.9rem;
   }
 
-.counter {
+  .counter {
     font-size: 2.5rem;
   }
 
@@ -526,16 +539,15 @@ header{
 
   body.lightmode .counter-controls{
     background: #f0f0f0;
-   }
-
+  }
 
   .arrow-button {
     width: 32px;
     height: 32px;
     font-size: 1rem;
   }
-  .item{
-  filter: grayscale(0)
-}
 
+  .item {
+    filter: grayscale(0);
+  }
 }

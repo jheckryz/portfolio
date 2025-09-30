@@ -16,7 +16,7 @@
   <div id="vanta-bg"></div>
 
   <header class="fade-in-top">
-    <div class="hamburger" id="hamburger">
+    <div class="hamburger" id="hamburger" aria-label="menu" role="button" tabindex="0">
       <span></span>
       <span></span>
       <span></span>
@@ -28,14 +28,13 @@
       </div>
 
       <nav>
-        <div class="theme-toggle" id="theme-switch">
+        <div class="theme-toggle" id="theme-switch" role="button" aria-pressed="false" tabindex="0">
           <div class="circle"></div>
         </div>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html">Home</a></li>
           <li class="active"><a href="about.html">About Me</a></li>
           <li><a href="techstack.html">Tech Stack</a></li>
-          
         </ul>
       </nav>
     </div>
@@ -45,24 +44,47 @@
     <div class="card">
       <h2>Hello, I'm Jheckryz!</h2>
       <div class="card-text">
-  <p>A student at <strong>St. Dominic College of Asia</strong>, studying <strong>BS in Information Technology</strong>. As an <strong>aspiring IT professional</strong>, I've always been interested with problem-solving and I want to explore the world of technology from software development and web design to cybersecurity and data management.</p>
+        <p>A student at <strong>St. Dominic College of Asia</strong>, studying <strong>BS in Information Technology</strong>. As an <strong>aspiring IT professional</strong>, I've always been interested with problem-solving and I want to explore the world of technology from software development and web design to cybersecurity and data management.</p>
 
-  <p>My goal is to build a strong foundation in IT and use my knowledge to create innovative and meaningful digital solutions. I'm excited to continue learning, collaborating, and stepping into opportunities that will shape me into a well-rounded tech professional.</p>
-</div>
+        <p>My goal is to build a strong foundation in IT and use my knowledge to create innovative and meaningful digital solutions. I'm excited to continue learning, collaborating, and stepping into opportunities that will shape me into a well-rounded tech professional.</p>
+      </div>
+
+      <!-- WORKS / CAROUSEL (2 images) -->
+      <section class="works" id="works-section">
+        <h2 class="works-heading">My Works</h2>
+        <div class="carousel-wrapper">
+          <div class="carousel-container" id="carousel">
+            <button class="carousel-prev" id="carousel-prev" aria-label="previous">‹</button>
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="carousel-track">
+                
+                <div class="carousel-slide"><img src="images/dominimap1.png" alt="Work 1" loading="lazy"></div>
+                <div class="carousel-slide"><img src="images/dominimap2.png" alt="Work 2" loading="lazy"></div>
+              </div>
+            </div>
+            <button class="carousel-next" id="carousel-next" aria-label="next">›</button>
+          </div>
+        </div>
+
+        <div class="carousel-meta">
+          <div class="carousel-title" id="carousel-title">DominiMap</div>
+          <p class="carousel-desc" id="carousel-desc">DominiMap is a mobile map application for the main campus of SDCA.</p>
+          <div class="carousel-dots" id="carousel-dots" aria-hidden="false"></div>
+        </div>
+      </section>
+      
 
     </div>
 
     <div class="bottom-right-controls">
-      <div class="top-text">
-       
-      </div>
+      <div class="top-text"></div>
       <div class="counter-controls">
         <div class="counter">
           <span class="current">02</span><span class="total">/03</span>
         </div>
         <div class="arrow-buttons">
-          <a href="index.html" class="arrow-button">←</a>
-          <a href="techstack.html" class="arrow-button">→</a>
+          <a href="index.html" class="arrow-button" aria-label="previous page">←</a>
+          <a href="techstack.html" class="arrow-button" aria-label="next page">→</a>
         </div>
       </div>
     </div>
