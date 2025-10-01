@@ -1,3 +1,13 @@
+/* css/techstack.css
+   Merged + final:
+   - Your provided global block (fonts, variables, resets)
+   - Responsive, fluid grid for .items (gradual resizing)
+   - All original UI pieces preserved (nav, hamburger, theme-toggle)
+   - Counter / arrow controls restored and styled
+   - JS-driven classes (hover, tilt, selected, dim) preserved
+*/
+
+/* --- fonts & root variables --- */
 @font-face {
   font-family: 'Nippo';
   src: url(Nippo-Regular.woff2);
@@ -18,6 +28,7 @@
   --text-color: #ffffff;
 }
 
+/* --- reset / base --- */
 * {
   margin: 0;
   padding: 0;
@@ -28,9 +39,11 @@ body {
   background-color: var(--base-color);
   color: var(--text-color);
   font-family: 'Inter', sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease,
+              color 0.3s ease;
 }
 
+/* --- vanta placeholder --- */
 #vanta-bg {
   position: fixed;
   top: 0;
@@ -40,6 +53,7 @@ body {
   z-index: -1;
 }
 
+/* --- header / nav --- */
 header {
   padding: 40px 80px;
   position: sticky;
@@ -68,6 +82,7 @@ nav {
   gap: 30px;
 }
 
+/* nav links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -111,6 +126,7 @@ nav {
   animation-delay: 0.4s;
 }
 
+/* theme toggle */
 .theme-toggle {
   width: 40px;
   height: 20px;
@@ -135,6 +151,7 @@ nav {
   transform: translateX(20px);
 }
 
+/* hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -149,236 +166,150 @@ nav {
   border-radius: 2px;
 }
 
-.techstack-section {
-  padding: 60px 80px;
+/* --- techstack heading + wrapper --- */
+#techstack {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   animation: slideUpFade 1s ease-out;
 }
 
 #techstack h2 {
-  font-size: 4rem;
+  font-size: clamp(2.1rem, 3.5vw, 4rem);
   font-family: 'Nippo';
   line-height: 1;
   font-weight: 500;
-  letter-spacing: -5px;
+  letter-spacing: -1px;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.techstack-section h2 {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 40px;
-  justify-items: center;
-}
-
-.tech-item {
-  text-align: center;
-}
-
-.tech-item img {
-  width: 80px;
-  height: auto;
-}
-
-.tech-item p {
-  margin-top: 10px;
-  font-size: 1rem;
-}
-
-.bottom-right-controls {
-  position: fixed;
-  bottom: 40px;
-  right: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 20px;
-}
-
-.top-text p {
-  font-size: 1rem;
-  opacity: 0.8;
-  text-align: right;
-}
-
-.counter-controls {
-  position: fixed;
-  bottom: 40px;
-  right: 60px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 10;
-}
-
-.counter {
-  font-size: 4rem;
-  font-weight: 700;
-  font-family: 'Nippo';
-  line-height: 1;
-}
-
-.counter .total {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  font-family: 'Nippo';
-  margin-left: 5px;
-  color: #fff;
-}
-
-.arrow-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.arrow-button {
-  color: white;
-  background: transparent;
-  border: 2px solid white;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background 0.3s, color 0.3s;
-  text-decoration: none;
-}
-
-.arrow-button:hover {
-  background: white;
-  color: black;
-}
-
-body.lightmode .arrow-button {
-  border-color: #111;
-  color: #111;
-}
-
-body.lightmode .arrow-button:hover {
-  background: #111;
-  color: white;
-}
-
-body.lightmode .top-text p,
-body.lightmode .counter .total {
-  color: #333;
-}
-
-body.lightmode .item {
-  background-color: #908e8e;
-}
-
 .wrapper {
   display: flex;
-  align-items: flex-start;    /* aligns items to the top */
+  align-items: flex-start;
   justify-content: center;
-  margin-top: 0;              /* remove unwanted spacing above */
-  margin-bottom: 0;           /* remove spacing below */
-  padding-top: 10px;          /* adjust as needed */
+  margin: 0;
+  padding-top: 10px;
 }
 
-/* Grid for items — responsive: fills columns then rows (works well with JS neighbor detection) */
+/* ------------------------------------------------------------------
+   Responsive, fluid grid for .items (gradual resizing, auto-fit)
+   - Uses minmax(clamp(...), 1fr) so tiles scale smoothly with viewport
+   - Keeps JS-friendly classes and behaviors intact
+   ------------------------------------------------------------------ */
 .items {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px;
+
   display: grid;
-  grid-auto-flow: column; /* fill top-to-bottom then create new columns */
-  grid-template-rows: repeat(2, auto); /* prefer 2 rows on wide screens but will reflow on smaller screens */
-  grid-auto-columns: 140px; /* column base width */
-  gap: 1rem;
-  justify-content: center; /* center grid block */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(110px, 12.5%, 180px), 1fr)
+  );
+  gap: clamp(8px, 1.6vw, 20px);
+
+  justify-items: center;
+  align-items: start;
   perspective: 1000px;
 }
 
-/* Item base */
+/* item tile: square, responsive, and JS-friendly */
 .item {
-  position: relative;
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 1 / 1;
   background-color: #222;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.45s var(--transition), filter 0.45s var(--transition), width 0.45s var(--transition), height 0.45s var(--transition);
-  will-change: transform, filter;
-  filter: grayscale(1) brightness(.5);
+
+  padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 10px;
+  justify-content: center;
   text-align: center;
-  transform-style: preserve-3d;
+
+  transition:
+    transform 0.35s var(--transition),
+    filter 0.35s var(--transition);
+  will-change: transform, filter;
+  filter: grayscale(1) brightness(.5);
 }
 
+/* images scale within tile, preserve aspect ratio */
 .item img {
-  width: 100%;
-  height: 100%;
-  max-height: 100px;
+  width: clamp(44px, 36%, 88px);
+  height: auto;
+  max-height: 60%;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.25s ease;
 }
 
+/* label */
 .item p {
-  font-size: 1rem;
-  color: white;
-  margin: 0;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #fff;
   width: 100%;
   text-align: center;
 }
 
-/* Gentle hover fallback (for no-JS users, non-invasive) */
+/* hover fallback */
 .items .item:hover {
   filter: grayscale(0) brightness(1);
   transform: translateY(-6px) scale(1.03);
   z-index: 6;
 }
 
-/* ======= Class-based states (JS toggles these) ======= */
-
-/* Hovered item (stronger push forward) */
+/* ------------------------------------------------------------------
+   Preserve/adjust JS-driven states (hovered, tilts, diagonal dimming)
+   ------------------------------------------------------------------ */
 .items .item.hovered {
   filter: inherit;
-  transform: scale(1.12) translateZ(calc(var(--index) * 6));
+  transform: scale(1.08) translateZ(calc(var(--index) * 6));
   z-index: 12;
 }
 
-/* Neighbors — only applied to true neighbors by JS */
 .items .item.tilt-left {
   filter: inherit;
-  transform: translateX(-12px) rotateY(-12deg) scale(1.04);
+  transform: translateX(-10px) rotateY(-12deg) scale(1.03);
   z-index: 7;
 }
 .items .item.tilt-right {
   filter: inherit;
-  transform: translateX(12px) rotateY(12deg) scale(1.04);
+  transform: translateX(10px) rotateY(12deg) scale(1.03);
   z-index: 7;
 }
 .items .item.tilt-up {
   filter: inherit;
-  transform: translateY(-12px) rotateX(-12deg) scale(1.04);
+  transform: translateY(-10px) rotateX(-10deg) scale(1.03);
   z-index: 7;
 }
 .items .item.tilt-down {
   filter: inherit;
-  transform: translateY(12px) rotateX(12deg) scale(1.04);
+  transform: translateY(10px) rotateX(10deg) scale(1.03);
   z-index: 7;
 }
 
-/* SELECTED (center enlarge) */
+/* dims class for diagonals */
+.items .item.dim {
+  filter: inherit;
+}
+
+/* ------------------------------------------------------------------
+   Selected (center enlarge) - responsive using clamp()
+   ------------------------------------------------------------------ */
 .items .item.selected {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 320px;
-  height: 320px;
+  width: clamp(260px, 40vw, 520px);
+  height: clamp(260px, 40vw, 520px);
   margin: 0;
   transform: translate(-50%, -50%) scale(1);
   z-index: 10001;
@@ -386,9 +317,10 @@ body.lightmode .item {
   filter: grayscale(0) brightness(1);
   border-radius: 18px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  padding: 20px;
 }
 
-/* overlay/backdrop used during selection */
+/* overlay/backdrop */
 .items-overlay {
   position: fixed;
   inset: 0;
@@ -403,70 +335,81 @@ body.lightmode .item {
   overflow: hidden;
 }
 
-/* Smooth restore when unfocused */
+/* restore normal state */
 .items .item:not(:active):not(:focus) {
   position: relative;
-  width: 140px;
-  height: 140px;
   box-shadow: none;
 }
 
-/* small helper to ensure hovered & tilts don't stack weirdly on mobile */
+/* no-hover (touch devices) */
 @media (hover: none) {
-  .items .item:hover { transform: none; filter: grayscale(1) brightness(.5); }
+  .items .item:hover {
+    transform: none;
+    filter: grayscale(1) brightness(.5);
+  }
 }
 
-/* Animations */
+/* --- animations --- */
 @keyframes slideUpFade {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes slideDownFade {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(-30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 @keyframes fadeInNav {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 @keyframes overlayFadeIn {
   to { opacity: 1; }
 }
 
-/* mid breakpoint */
+/* ------------------------------------------------------------------
+   Tablet tweaks
+   ------------------------------------------------------------------ */
 @media (max-width: 1024px) and (min-width: 769px) {
   header {
     padding: 30px 40px;
   }
 
+  .items {
+    gap: 14px;
+  }
+
   .item {
-    filter: grayscale(0);
+    max-width: 200px;
+    padding: 12px;
+  }
+
+  .item img {
+    width: clamp(56px, 36%, 96px);
+    max-height: 62%;
   }
 }
 
-/* Responsive */
+/* ------------------------------------------------------------------
+   Mobile tweaks
+   ------------------------------------------------------------------ */
 @media (max-width: 768px) {
   header {
     padding: 20px;
@@ -515,15 +458,27 @@ body.lightmode .item {
     background: #f0f0f0;
   }
 
-  .techstack-section {
-    padding: 40px 20px;
+  #techstack {
+    padding: 24px 12px;
   }
 
-  .tech-item img {
-    width: 60px;
+  .items {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
   }
 
-  .tech-item p {
+  .item {
+    max-width: 140px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .item img {
+    width: clamp(42px, 34%, 72px);
+    max-height: 55%;
+  }
+
+  .item p {
     font-size: 0.9rem;
   }
 
@@ -531,13 +486,13 @@ body.lightmode .item {
     font-size: 2.5rem;
   }
 
-  .counter-controls{
+  .counter-controls {
     background: #0e0e0e;
     margin-bottom: -35px;
     margin-right: -55px;
   }
 
-  body.lightmode .counter-controls{
+  body.lightmode .counter-controls {
     background: #f0f0f0;
   }
 
@@ -546,8 +501,100 @@ body.lightmode .item {
     height: 32px;
     font-size: 1rem;
   }
+}
+
+/* ------------------------------------------------------------------
+   Fluid grid extra breakpoints for very wide screens
+   ------------------------------------------------------------------ */
+@media (min-width: 1400px) {
+  .items {
+    max-width: 1400px;
+    gap: 22px;
+  }
 
   .item {
-    filter: grayscale(0);
+    max-width: 220px;
   }
+
+  .item img {
+    max-height: 100px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Counter / bottom-right controls (restored styling + responsive)
+   - ensures the counter/arrow controls remain visible and styled
+   ------------------------------------------------------------------ */
+.counter-controls {
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* large numeric counter */
+.counter {
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: 'Nippo';
+  line-height: 1;
+  color: var(--text-color);
+}
+
+/* small "total" text next to current number */
+.counter .total {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-family: 'Nippo';
+  margin-left: 6px;
+  color: var(--text-color);
+}
+
+/* arrow buttons */
+.arrow-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow-button {
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s, color 0.3s;
+  text-decoration: none;
+}
+
+.arrow-button:hover {
+  background: white;
+  color: black;
+}
+
+/* lightmode variants for arrows/counter */
+body.lightmode .arrow-button {
+  border-color: #111;
+  color: #111;
+}
+
+body.lightmode .arrow-button:hover {
+  background: #111;
+  color: white;
+}
+
+body.lightmode .counter,
+body.lightmode .counter .total {
+  color: #111;
 }

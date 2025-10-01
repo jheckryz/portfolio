@@ -57,9 +57,18 @@
             <button class="carousel-prev" id="carousel-prev" aria-label="previous">‹</button>
             <div class="carousel-viewport">
               <div class="carousel-track" id="carousel-track">
-                
-                <div class="carousel-slide"><img src="images/dominimap1.png" alt="Work 1" loading="lazy"></div>
-                <div class="carousel-slide"><img src="images/dominimap2.png" alt="Work 2" loading="lazy"></div>
+                <!-- both slides now include identical data-title / data-desc -->
+                <div class="carousel-slide"
+                     data-title="DominiMap"
+                     data-desc="DominiMap is a mobile map application for the main campus of SDCA.">
+                  <img src="images/dominimap1.png" alt="DominiMap" loading="lazy">
+                </div>
+
+                <div class="carousel-slide"
+                     data-title="DominiMap"
+                     data-desc="DominiMap is a mobile map application for the main campus of SDCA.">
+                  <img src="images/dominimap2.png" alt="DominiMap" loading="lazy">
+                </div>
               </div>
             </div>
             <button class="carousel-next" id="carousel-next" aria-label="next">›</button>
@@ -67,12 +76,13 @@
         </div>
 
         <div class="carousel-meta">
+          <!-- initial title/desc (will be preserved until JS updates to slide-specific values) -->
           <div class="carousel-title" id="carousel-title">DominiMap</div>
           <p class="carousel-desc" id="carousel-desc">DominiMap is a mobile map application for the main campus of SDCA.</p>
           <div class="carousel-dots" id="carousel-dots" aria-hidden="false"></div>
         </div>
       </section>
-      
+      <!-- END WORKS -->
 
     </div>
 

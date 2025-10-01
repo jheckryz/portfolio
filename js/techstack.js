@@ -1,6 +1,3 @@
-// Updated neighbor tilt + dim behavior
-// Keeps theme/hamburger code intact and only changes tilt strengths & adds 'dim' state.
-
 function updateLogo(isDark) {
   const logo = document.getElementById("logo");
   if (logo) {
