@@ -187,15 +187,16 @@
       iot.glassTop = gr.top - stageTop;
       iot.glassH = gr.height;
     }
-    // The picture ends as a circle in the middle of the screen, cropped around the face.
+    // The picture ends as a circle centred between the nav and the name, cropped around the face.
+    const nameTop = $('.hero-name').offsetTop, NAV_BOTTOM = 56;
     for (const pl of plates) {
       const w = pl.el.offsetWidth, h = pl.el.offsetHeight, r = w * .4;
       const cx = clamp(w * pl.fx, r, w - r), cy = clamp(h * pl.fy, r, h - r);
       pl.round = r;
       pl.inset = [cy - r, w - cx - r, h - cy - r, cx - r];
-      pl.endS = Math.min(innerWidth * (phone ? .44 : .2), vh * .26) / (r * 2);
+      pl.endS = Math.min(innerWidth * (phone ? .56 : .24), vh * .34, nameTop - NAV_BOTTOM - 32) / (r * 2);
       pl.endX = -pl.endS * (cx - w / 2);
-      pl.endY = vh / 2 - pl.el.offsetTop - pl.endS * (cy - h / 2);
+      pl.endY = (NAV_BOTTOM + nameTop) / 2 - pl.el.offsetTop - pl.endS * (cy - h / 2);
     }
     lead.dataset.top = lead.getBoundingClientRect().top + sy;
     lead.dataset.h = lead.offsetHeight;
