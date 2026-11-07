@@ -1,0 +1,653 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T10:18:18.848Z",
+  "title": "Design System: Jheckryz Osio",
+  "extensions": {
+    "colorMeta": {
+      "crimson": {
+        "role": "primary",
+        "displayName": "Safelight Crimson",
+        "canonical": "#d0142f",
+        "tonalRamp": [
+          "oklch(15.0% 0.213 22.9)",
+          "oklch(26.4% 0.213 22.9)",
+          "oklch(37.9% 0.213 22.9)",
+          "oklch(49.3% 0.213 22.9)",
+          "oklch(60.7% 0.213 22.9)",
+          "oklch(72.1% 0.213 22.9)",
+          "oklch(83.6% 0.213 22.9)",
+          "oklch(95.0% 0.213 22.9)"
+        ]
+      },
+      "on-crimson": {
+        "role": "primary",
+        "displayName": "White on Crimson",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Darkroom Black",
+        "canonical": "#0c0a0a",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 17.6)",
+          "oklch(26.4% 0.003 17.6)",
+          "oklch(37.9% 0.003 17.6)",
+          "oklch(49.3% 0.003 17.6)",
+          "oklch(60.7% 0.003 17.6)",
+          "oklch(72.1% 0.003 17.6)",
+          "oklch(83.6% 0.003 17.6)",
+          "oklch(95.0% 0.003 17.6)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Fixer Off-White",
+        "canonical": "#f1eee8",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 84.6)",
+          "oklch(26.4% 0.009 84.6)",
+          "oklch(37.9% 0.009 84.6)",
+          "oklch(49.3% 0.009 84.6)",
+          "oklch(60.7% 0.009 84.6)",
+          "oklch(72.1% 0.009 84.6)",
+          "oklch(83.6% 0.009 84.6)",
+          "oklch(95.0% 0.009 84.6)"
+        ]
+      },
+      "dim": {
+        "role": "neutral",
+        "displayName": "Dim Warm Grey",
+        "canonical": "#a49d96",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 67.6)",
+          "oklch(26.4% 0.013 67.6)",
+          "oklch(37.9% 0.013 67.6)",
+          "oklch(49.3% 0.013 67.6)",
+          "oklch(60.7% 0.013 67.6)",
+          "oklch(72.1% 0.013 67.6)",
+          "oklch(83.6% 0.013 67.6)",
+          "oklch(95.0% 0.013 67.6)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(241, 238, 232, .18)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 84.6)",
+          "oklch(26.4% 0.009 84.6)",
+          "oklch(37.9% 0.009 84.6)",
+          "oklch(49.3% 0.009 84.6)",
+          "oklch(60.7% 0.009 84.6)",
+          "oklch(72.1% 0.009 84.6)",
+          "oklch(83.6% 0.009 84.6)",
+          "oklch(95.0% 0.009 84.6)"
+        ]
+      },
+      "ghost": {
+        "role": "neutral",
+        "displayName": "Ghost Ink",
+        "canonical": "rgba(241, 238, 232, .07)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 84.6)",
+          "oklch(26.4% 0.009 84.6)",
+          "oklch(37.9% 0.009 84.6)",
+          "oklch(49.3% 0.009 84.6)",
+          "oklch(60.7% 0.009 84.6)",
+          "oklch(72.1% 0.009 84.6)",
+          "oklch(83.6% 0.009 84.6)",
+          "oklch(95.0% 0.009 84.6)"
+        ]
+      },
+      "ground-light": {
+        "role": "neutral",
+        "displayName": "Lit Room Ground",
+        "canonical": "#f1eee8",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 84.6)",
+          "oklch(26.4% 0.009 84.6)",
+          "oklch(37.9% 0.009 84.6)",
+          "oklch(49.3% 0.009 84.6)",
+          "oklch(60.7% 0.009 84.6)",
+          "oklch(72.1% 0.009 84.6)",
+          "oklch(83.6% 0.009 84.6)",
+          "oklch(95.0% 0.009 84.6)"
+        ]
+      },
+      "ink-light": {
+        "role": "neutral",
+        "displayName": "Lit Room Ink",
+        "canonical": "#0c0a0a",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 17.6)",
+          "oklch(26.4% 0.003 17.6)",
+          "oklch(37.9% 0.003 17.6)",
+          "oklch(49.3% 0.003 17.6)",
+          "oklch(60.7% 0.003 17.6)",
+          "oklch(72.1% 0.003 17.6)",
+          "oklch(83.6% 0.003 17.6)",
+          "oklch(95.0% 0.003 17.6)"
+        ]
+      },
+      "dim-light": {
+        "role": "neutral",
+        "displayName": "Lit Room Dim",
+        "canonical": "#5f5954",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 62.4)",
+          "oklch(26.4% 0.011 62.4)",
+          "oklch(37.9% 0.011 62.4)",
+          "oklch(49.3% 0.011 62.4)",
+          "oklch(60.7% 0.011 62.4)",
+          "oklch(72.1% 0.011 62.4)",
+          "oklch(83.6% 0.011 62.4)",
+          "oklch(95.0% 0.011 62.4)"
+        ]
+      },
+      "line-light": {
+        "role": "neutral",
+        "displayName": "Lit Room Hairline",
+        "canonical": "rgba(12, 10, 10, .2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 17.6)",
+          "oklch(26.4% 0.003 17.6)",
+          "oklch(37.9% 0.003 17.6)",
+          "oklch(49.3% 0.003 17.6)",
+          "oklch(60.7% 0.003 17.6)",
+          "oklch(72.1% 0.003 17.6)",
+          "oklch(83.6% 0.003 17.6)",
+          "oklch(95.0% 0.003 17.6)"
+        ]
+      },
+      "ghost-light": {
+        "role": "neutral",
+        "displayName": "Lit Room Ghost",
+        "canonical": "rgba(12, 10, 10, .06)",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 17.6)",
+          "oklch(26.4% 0.003 17.6)",
+          "oklch(37.9% 0.003 17.6)",
+          "oklch(49.3% 0.003 17.6)",
+          "oklch(60.7% 0.003 17.6)",
+          "oklch(72.1% 0.003 17.6)",
+          "oklch(83.6% 0.003 17.6)",
+          "oklch(95.0% 0.003 17.6)"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "paper-hover": {
+        "role": "neutral",
+        "displayName": "Paper Hover",
+        "canonical": "#f0efed",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 84.6)",
+          "oklch(26.4% 0.003 84.6)",
+          "oklch(37.9% 0.003 84.6)",
+          "oklch(49.3% 0.003 84.6)",
+          "oklch(60.7% 0.003 84.6)",
+          "oklch(72.1% 0.003 84.6)",
+          "oklch(83.6% 0.003 84.6)",
+          "oklch(95.0% 0.003 84.6)"
+        ]
+      },
+      "paper-ink": {
+        "role": "neutral",
+        "displayName": "Paper Ink",
+        "canonical": "#0c0a0a",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 17.6)",
+          "oklch(26.4% 0.003 17.6)",
+          "oklch(37.9% 0.003 17.6)",
+          "oklch(49.3% 0.003 17.6)",
+          "oklch(60.7% 0.003 17.6)",
+          "oklch(72.1% 0.003 17.6)",
+          "oklch(83.6% 0.003 17.6)",
+          "oklch(95.0% 0.003 17.6)"
+        ]
+      },
+      "plate-backing": {
+        "role": "neutral",
+        "displayName": "Plate Backing",
+        "canonical": "#17090c",
+        "tonalRamp": [
+          "oklch(15.0% 0.025 6.3)",
+          "oklch(26.4% 0.025 6.3)",
+          "oklch(37.9% 0.025 6.3)",
+          "oklch(49.3% 0.025 6.3)",
+          "oklch(60.7% 0.025 6.3)",
+          "oklch(72.1% 0.025 6.3)",
+          "oklch(83.6% 0.025 6.3)",
+          "oklch(95.0% 0.025 6.3)"
+        ]
+      },
+      "duotone-shadow": {
+        "role": "tertiary",
+        "displayName": "Duotone Shadow",
+        "canonical": "safelight table stop 1: R 0.17, G 0.02, B 0.05",
+        "tonalRamp": [
+          "oklch(15.0% 0.063 12.1)",
+          "oklch(26.4% 0.063 12.1)",
+          "oklch(37.9% 0.063 12.1)",
+          "oklch(49.3% 0.063 12.1)",
+          "oklch(60.7% 0.063 12.1)",
+          "oklch(72.1% 0.063 12.1)",
+          "oklch(83.6% 0.063 12.1)",
+          "oklch(95.0% 0.063 12.1)"
+        ]
+      },
+      "duotone-mid": {
+        "role": "tertiary",
+        "displayName": "Duotone Mid",
+        "canonical": "safelight table stop 2: R 0.82, G 0.07, B 0.17",
+        "tonalRamp": [
+          "oklch(15.0% 0.214 23.8)",
+          "oklch(26.4% 0.214 23.8)",
+          "oklch(37.9% 0.214 23.8)",
+          "oklch(49.3% 0.214 23.8)",
+          "oklch(60.7% 0.214 23.8)",
+          "oklch(72.1% 0.214 23.8)",
+          "oklch(83.6% 0.214 23.8)",
+          "oklch(95.0% 0.214 23.8)"
+        ]
+      },
+      "duotone-highlight": {
+        "role": "tertiary",
+        "displayName": "Duotone Highlight",
+        "canonical": "safelight table stop 3: R 1, G 0.92, B 0.90",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 34.3)",
+          "oklch(26.4% 0.023 34.3)",
+          "oklch(37.9% 0.023 34.3)",
+          "oklch(49.3% 0.023 34.3)",
+          "oklch(60.7% 0.023 34.3)",
+          "oklch(72.1% 0.023 34.3)",
+          "oklch(83.6% 0.023 34.3)",
+          "oklch(95.0% 0.023 34.3)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name, edge to edge along the bottom of the hero; uppercase. 21.2vw below 800px."
+      },
+      "marquee": {
+        "displayName": "Marquee",
+        "purpose": "A project name running behind or around its screens. 18vw on phones."
+      },
+      "email": {
+        "displayName": "Email",
+        "purpose": "The contact address, fitted to the content width. rail-room is 0 below 800px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Large section titles."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The statement paragraph, revealed word by word on scroll."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project rows; the pinned project title shares this voice."
+      },
+      "label-section": {
+        "displayName": "Section Label",
+        "purpose": "Quiet section and sub-group names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default reading text."
+      },
+      "label-nav": {
+        "displayName": "Nav Label",
+        "purpose": "Tab links only; uppercase."
+      },
+      "label-data": {
+        "displayName": "Data Label",
+        "purpose": "Table headers, row status and figure numbers."
+      },
+      "label-index": {
+        "displayName": "Index Label",
+        "purpose": "Frame numbers above each contact-sheet entry."
+      },
+      "label-rail": {
+        "displayName": "Rail Label",
+        "purpose": "The vertical section frame number."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tab-lift",
+        "value": "drop-shadow(0 8px 20px rgba(12, 10, 10, .16))",
+        "purpose": "filter on the top bar; follows the tab silhouette and separates the white tab from the lit-room ground."
+      },
+      {
+        "name": "ledger-trace",
+        "value": "inset 0 -1px 0 var(--ink), inset 0 1px 0 var(--ink)",
+        "purpose": "Not elevation: redraws a pointed ledger row's hairlines in full ink."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Movement in pointer states and the entrance."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(.32, .72, 0, 1)",
+        "purpose": "The nav mark sliding between items, 260ms."
+      },
+      {
+        "name": "scroll-smoothing",
+        "value": "cur += (scrollY - cur) * (1 - exp(-dt * 14)); dt capped at .05s; snaps within .4px",
+        "purpose": "The one smoothed value that drives every scrubbed effect."
+      },
+      {
+        "name": "scrub-ease",
+        "value": "inOut cubic: t < .5 ? 4t^3 : 1 - (-2t + 2)^3 / 2",
+        "purpose": "Position easing for scrubbed movement."
+      },
+      {
+        "name": "plate-square-up",
+        "value": "t = inOut((p - .04 - i * .02) / .62); rotate to 0; scale to 20vw width (44vw on phones)",
+        "purpose": "p is hero pin progress, i the plate index."
+      },
+      {
+        "name": "plate-develop",
+        "value": "duo opacity = 1 - clamp((p - .2 - i * .07) / .4)",
+        "purpose": "Hero plates resolve from duotone to true colour."
+      },
+      {
+        "name": "screen-part",
+        "value": "t = inOut(p / .6); translateX -78% to -106% and -22% to 6%; rotate +-4deg to 0; scale .62 (.8 on phones) to 1",
+        "purpose": "App screens grow and part; p is project pin progress."
+      },
+      {
+        "name": "screen-develop",
+        "value": "duo opacity = 1 - clamp((p - .16 - i * .08) / .42)",
+        "purpose": "App screens resolve to true colour."
+      },
+      {
+        "name": "marquee-oppose",
+        "value": "translateX 2% to -48% and -48% to 2%, linear in p",
+        "purpose": "Two name rows run in opposite directions."
+      },
+      {
+        "name": "copy-reveal",
+        "value": "opacity = clamp((p - .55) / .16), start .25 on phones; translateY 16px to 0",
+        "purpose": "Project copy arrives after the screens settle."
+      },
+      {
+        "name": "word-reveal",
+        "value": "word opacity .2 to 1, stepped by word index across the block's scroll travel",
+        "purpose": "The statement paragraph reads in as it is scrolled."
+      },
+      {
+        "name": "print-wash",
+        "value": "wash opacity = min(1, .9 sin^2 theta)",
+        "purpose": "Only the print facing the viewer is fully developed."
+      },
+      {
+        "name": "logo-helix",
+        "value": "theta = i * 30deg - wind; translate3d(R sin theta, (at - i) * rise, R cos theta) rotateY(theta); R = 2.3 size, rise = .42 size, perspective 1500px",
+        "purpose": "Scroll, or circles drawn with a real pointer, wind the logo prints round a helix and turn the tick dial behind it; static grid with reduced motion."
+      },
+      {
+        "name": "contact-unclip",
+        "value": "inset(14c% 6c% 0 6c%), c = 1 - inOut((y + vh - top) / .85vh)",
+        "purpose": "The crimson field opens to full bleed."
+      },
+      {
+        "name": "duration-state",
+        "value": "160ms",
+        "purpose": "Colour and press states; pressed scale .97."
+      },
+      {
+        "name": "duration-pointer",
+        "value": "200-300ms",
+        "purpose": "Duo and wash 200ms, arrows 200ms, row icon 220ms, print 240ms, row wipe 280ms, plate scale and theme icon 300ms."
+      },
+      {
+        "name": "name-trail",
+        "value": "colour on 0ms, off 500ms ease",
+        "purpose": "Each hero letter takes crimson under the pointer, leaving a trail."
+      },
+      {
+        "name": "entrance",
+        "value": "tab 560ms translateY(-88px) to 0 with strip 640ms scaleX 0 to 1 from the centre, no delay; name 1000ms opacity and translate 14%; plate 900ms, delay 120ms, opacity, rotate and 6vh rise; intro and action 500ms opacity, delay 500ms; all ease-out",
+        "purpose": "Once on first paint, only with scrollY under 10."
+      },
+      {
+        "name": "theme-crossfade",
+        "value": "220ms ease, View Transitions root",
+        "purpose": "Softens the room-lights flip where supported; instant otherwise."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "No pinning, duotone, wash, smoothing, entrance or larger pointer movement (plate scale, print rise, logo scale, row shift); everything in place in true colour."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "799px"
+      },
+      {
+        "name": "phone-short",
+        "value": "799px wide and 720px tall"
+      },
+      {
+        "name": "nav-tight",
+        "value": "430px"
+      },
+      {
+        "name": "nav-no-logo",
+        "value": "389px"
+      },
+      {
+        "name": "nav-tightest",
+        "value": "345px"
+      }
+    ],
+    "material": {
+      "duotoneFilter": {
+        "id": "safelight",
+        "location": "inline SVG in index.html",
+        "colorInterpolation": "sRGB",
+        "saturate": 0,
+        "tableR": "0.17 0.82 1",
+        "tableG": "0.02 0.07 0.92",
+        "tableB": "0.05 0.17 0.90"
+      },
+      "grain": {
+        "technique": "fixed SVG feTurbulence fractalNoise, baseFrequency .85, numOctaves 2, saturate 0, 220px tile",
+        "opacityDark": 0.06,
+        "opacityLight": 0.04,
+        "zIndex": 90
+      },
+      "tabShoulder": {
+        "path": "M0 0V8C14 8 20 12 25 21L35 41C40 51 46 56 56 56V0Z",
+        "size": "56px, 34px at 799px, 30px at 430px"
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Hanging Tab Nav",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "White tab with flared shoulders hanging from an 8px bar; a crimson mark names the current section.",
+      "html": "<header class=\"ds-topbar\"><nav class=\"ds-tab\" aria-label=\"Example\"><a class=\"ds-tab-item\" href=\"#a\">About</a><a class=\"ds-tab-item\" href=\"#b\" aria-current=\"true\">Works</a><a class=\"ds-tab-item\" href=\"#c\">Stack</a></nav></header>",
+      "css": ".ds-topbar { height: 8px; margin-bottom: 56px; background: #fff; display: flex; justify-content: center; filter: drop-shadow(0 8px 20px rgba(12, 10, 10, .16)); } .ds-tab { position: relative; height: 56px; display: flex; align-items: flex-start; padding-top: 8px; background: #fff; color: #0c0a0a; } .ds-tab::before, .ds-tab::after { content: ''; position: absolute; top: 0; width: 56px; height: 56px; background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56' preserveAspectRatio='none'%3E%3Cpath d='M0 0V8C14 8 20 12 25 21L35 41C40 51 46 56 56 56V0Z' fill='%23fff'/%3E%3C/svg%3E\") no-repeat; pointer-events: none; } .ds-tab::before { right: calc(100% - 1px); } .ds-tab::after { left: calc(100% - 1px); transform: scaleX(-1); } .ds-tab-item { position: relative; z-index: 1; height: 40px; display: inline-flex; align-items: center; padding: 0 clamp(7px, 1.25vw, 18px); border-radius: 999px; color: inherit; font: 400 clamp(10.5px, 2.8vw, 12px)/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: background-color 160ms ease, transform 160ms cubic-bezier(.23, 1, .32, 1); } .ds-tab-item:hover { background: #f0efed; } .ds-tab-item:active { transform: scale(.97); } .ds-tab-item:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-tab-item[aria-current]::after { content: ''; position: absolute; bottom: -3px; left: calc(50% - 6px); width: 12px; height: 2px; background: var(--crimson); }"
+    },
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The crimson contact action with a travelling arrow.",
+      "html": "<a class=\"ds-cta\" href=\"#contact\">Get in touch<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M3 8h9.5M8.5 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--crimson); color: var(--on-crimson); font: 500 1rem/1.5 var(--display); text-decoration: none; transition: transform 160ms cubic-bezier(.23, 1, .32, 1), background-color 160ms ease, color 160ms ease; } .ds-cta svg { transition: transform 200ms cubic-bezier(.23, 1, .32, 1); } .ds-cta:hover { background: var(--ink); color: var(--ground); } .ds-cta:hover svg { transform: translateX(3px); } .ds-cta:active { transform: scale(.97); } .ds-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button on Crimson",
+      "kind": "button",
+      "refersTo": "button-outline-on-crimson",
+      "description": "The secondary action inside the crimson contact field.",
+      "html": "<div class=\"ds-field\"><button class=\"ds-copy\" type=\"button\">Copy email</button></div>",
+      "css": ".ds-field { padding: 24px; background: var(--crimson); color: var(--on-crimson); } .ds-copy { min-height: 44px; min-width: 8.5em; padding: 0 18px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; font: 500 1rem/1 var(--display); transition: background-color 160ms ease, color 160ms ease, transform 160ms cubic-bezier(.23, 1, .32, 1); } .ds-copy:hover { background: #fff; color: var(--crimson); } .ds-copy:active { transform: scale(.97); } .ds-copy:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Developing Plate",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Two-layer image frame: true colour beneath a safelight duotone clone. Scroll fades the clone; a pointer develops it at once. Gradient stands in for a photograph.",
+      "html": "<svg width=\"0\" height=\"0\" style=\"position:absolute\" aria-hidden=\"true\"><filter id=\"ds-safelight\" color-interpolation-filters=\"sRGB\"><feColorMatrix type=\"saturate\" values=\"0\"/><feComponentTransfer><feFuncR type=\"table\" tableValues=\"0.17 0.82 1\"/><feFuncG type=\"table\" tableValues=\"0.02 0.07 0.92\"/><feFuncB type=\"table\" tableValues=\"0.05 0.17 0.90\"/></feComponentTransfer></filter></svg><figure class=\"ds-plate\"><div class=\"ds-photo\"></div><div class=\"ds-photo ds-duo\"></div></figure>",
+      "css": ".ds-plate { position: relative; margin: 0; width: 200px; aspect-ratio: 4 / 5; overflow: hidden; background: #17090c; outline: 1px solid var(--line); outline-offset: -1px; transition: scale 300ms cubic-bezier(.23, 1, .32, 1); } .ds-photo { position: absolute; inset: 0; background: linear-gradient(160deg, #e8d6b8, #6f7f8c 55%, #1d2329); } .ds-duo { filter: url(#ds-safelight); transition: opacity 200ms ease; } .ds-plate:hover { scale: 1.03; } .ds-plate:hover .ds-duo { opacity: 0; }"
+    },
+    {
+      "name": "Contact-Sheet Frame",
+      "kind": "card",
+      "refersTo": "print",
+      "description": "Logo on no backing under a crimson multiply wash masked to its shape, with a mono frame number and name. Grey block stands in for a logo.",
+      "html": "<div class=\"ds-frame\"><div class=\"ds-print\"><div class=\"ds-logo\"></div><i class=\"ds-wash\"></i></div><p><span>01</span> Item name</p></div>",
+      "css": ".ds-frame { width: 140px; color: var(--ink); font-family: var(--display); } .ds-print { position: relative; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; transition: translate 240ms cubic-bezier(.23, 1, .32, 1); } .ds-logo { width: 56%; height: 56%; background: #3a3a3a; transition: scale 240ms cubic-bezier(.23, 1, .32, 1); } .ds-wash { position: absolute; inset: 0; background: var(--crimson); mix-blend-mode: multiply; transition: opacity 200ms ease; } .ds-frame p { margin: 8px 0 0; font-size: .9375rem; line-height: 1.25; } .ds-frame p span { display: block; margin-bottom: 2px; color: var(--dim); font: 400 11px/1.35 var(--mono); font-variant-numeric: tabular-nums; transition: color 160ms ease; } .ds-frame:hover .ds-print { translate: 0 -4px; } .ds-frame:hover .ds-logo { scale: 1.08; } .ds-frame:hover .ds-wash { opacity: 0; } .ds-frame:hover p span { color: var(--ink); }"
+    },
+    {
+      "name": "Project Row",
+      "kind": "custom",
+      "refersTo": "project-row",
+      "description": "Expandable row between hairlines; crimson wipes in on hover and focus. Text here is sample only.",
+      "html": "<details class=\"ds-row\"><summary><h4>Project name</h4><span class=\"ds-status\">Status</span><svg class=\"ds-row-icon\" viewBox=\"0 0 16 16\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M8 2.5v11M2.5 8h11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></summary><dl class=\"ds-fields\"><div><dt>Field</dt><dd>Value</dd></div></dl></details>",
+      "css": ".ds-row { border-block: 1px solid var(--line); color: var(--ink); font-family: var(--display); } .ds-row summary { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: clamp(12px, 2vw, 28px); padding: clamp(16px, 2.4vw, 28px) 0; cursor: pointer; list-style: none; transition: color 160ms ease; } .ds-row summary::-webkit-details-marker { display: none; } .ds-row summary::before { content: ''; position: absolute; z-index: -1; inset: 0 -12px; background: var(--crimson); clip-path: inset(0 100% 0 0); transition: clip-path 280ms cubic-bezier(.23, 1, .32, 1); } .ds-row h4 { margin: 0; font-size: clamp(1.625rem, 3.4vw, 3.25rem); font-weight: 700; line-height: 1.05; letter-spacing: -.04em; transition: transform 280ms cubic-bezier(.23, 1, .32, 1); } .ds-status { color: var(--dim); font: 400 12px/1.3 var(--mono); transition: color 160ms ease; } .ds-row-icon { transition: transform 220ms cubic-bezier(.23, 1, .32, 1); } .ds-row[open] .ds-row-icon { transform: rotate(45deg); } .ds-row summary:hover, .ds-row summary:focus-visible { color: var(--on-crimson); } .ds-row summary:hover::before, .ds-row summary:focus-visible::before { clip-path: inset(0); } .ds-row summary:hover h4 { transform: translateX(8px); } .ds-row summary:hover .ds-status, .ds-row summary:focus-visible .ds-status { color: var(--on-crimson); } .ds-row summary:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; } .ds-fields { margin: 0; padding: 12px 0; } .ds-fields div { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-block: 10px; border-top: 1px solid var(--line); } .ds-fields dt { font-weight: 500; } .ds-fields dd { margin: 0; color: var(--dim); }"
+    },
+    {
+      "name": "Ledger",
+      "kind": "custom",
+      "refersTo": "ledger-cell",
+      "description": "Fixed four-column record table between hairlines. Text here is sample only.",
+      "html": "<table class=\"ds-ledger\"><thead><tr><th scope=\"col\">Record</th><th scope=\"col\">Source</th><th scope=\"col\" colspan=\"2\">Date</th></tr></thead><tbody><tr><td>Value</td><td>Value</td><td colspan=\"2\">Value</td></tr></tbody></table>",
+      "css": ".ds-ledger { width: 100%; border-collapse: collapse; table-layout: fixed; font-family: var(--display); } .ds-ledger th { padding: 0 12px 10px 0; color: var(--dim); font: 400 12px/1.3 var(--mono); text-align: left; } .ds-ledger td { padding: 16px 12px 16px 0; border-block: 1px solid var(--line); color: var(--dim); transition: background-color 160ms ease, color 160ms ease; } .ds-ledger tbody tr:hover td { color: var(--ink); box-shadow: inset 0 -1px 0 var(--ink), inset 0 1px 0 var(--ink); }"
+    },
+    {
+      "name": "Edge Rail",
+      "kind": "custom",
+      "refersTo": "label-rail",
+      "description": "Vertical frame counter reading current / total. Fixed to the right edge in the build, hidden at 799px and below.",
+      "html": "<p class=\"ds-rail\" aria-hidden=\"true\">02 / 05</p>",
+      "css": ".ds-rail { margin: 0; writing-mode: vertical-rl; font: 400 11px/1 var(--mono); font-variant-numeric: tabular-nums; letter-spacing: .14em; color: var(--ink); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Safelight Darkroom",
+    "overview": "The page is a near-black room lit by one crimson safelight. Images arrive as crimson duotone plates and resolve to true colour as the visitor scrolls, the way a print comes up in the tray. Scroll position, smoothed once, is the only clock for that change, so the page reads as one continuous development rather than a sequence of separate animations.\n\nEverything else stays out of the way of that event. Off-white ink sets tight, heavy grotesk type at very large sizes, Geist Mono carries numbering and data, surfaces are flat and sharp-cornered, and film grain sits over the whole frame. Density swings on purpose: pinned stages hold a single idea at full viewport height, while the rows and ledgers below them are open, hairline-ruled and text-only.\n\nThe theme toggle turns the room lights on. Ground and ink swap, the duotone and the wash disappear, and every plate shows in full colour. Crimson and the white tab do not change between rooms.",
+    "keyCharacteristics": [
+      "One crimson, reserved for what is live or actionable.",
+      "Images develop from duotone to true colour on one scroll timeline.",
+      "Sharp-cornered plates and prints with no resting shadow.",
+      "A white tab with flared shoulders hanging from a thin top bar.",
+      "Tight heavy grotesk display over small mono data labels.",
+      "A fixed frame number on a vertical edge rail.",
+      "Film grain over the entire page."
+    ],
+    "rules": [
+      {
+        "name": "The Live Crimson Rule",
+        "body": "Crimson marks something developing, current, pointed at or actionable. Nothing else gets it, and no second accent exists.",
+        "section": "colors"
+      },
+      {
+        "name": "The Room Lights Rule",
+        "body": "The theme switches ground, ink, dim, line, ghost and grain (dark .06, light .04). It never changes crimson or the white tab, and in the lit room the duotone and wash layers are removed entirely.",
+        "section": "colors"
+      },
+      {
+        "name": "The True Colour Default Rule",
+        "body": "True colour is the base state. The duotone layer is a clone added by script, so without script, under reduced motion or in the lit room, plates are simply the photograph.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "The grotesk speaks and the mono counts. Mono carries numbering, table headers, status and nav, and never a sentence.",
+        "section": "typography"
+      },
+      {
+        "name": "The Frame Number Rule",
+        "body": "A section's number lives on the edge rail, in the form `02 / 05`. Mono indexes may sit with items in a numbered series (a figure, a contact-sheet frame), but section headings never get a label above them.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Timeline Rule",
+        "body": "New scroll effects are added to the one smoothed render loop as a function of scroll position. They never get their own listener, library or trigger.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hold Still Rule",
+        "body": "Under `prefers-reduced-motion: reduce` pinning, duotone, wash, entrance, smoothing and the larger pointer movements (plate scale, print rise, logo scale, row shift) all go away. Stages stop pinning and every image sits in place in true colour.",
+        "section": "layout"
+      },
+      {
+        "name": "The Real Pointer Rule",
+        "body": "Hover states exist only inside `(hover: hover) and (pointer: fine)`. Project rows mirror their hover state on `:focus-visible`, so keyboard users get the same wipe.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Plate Rule",
+        "body": "Plates, prints, buttons and rows carry no resting or hover shadow. A pointed plate scales to 1.03 and comes forward in z-order instead.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sharp Plate Rule",
+        "body": "Anything that holds an image or an action outside the nav is square-cornered. Curves belong to the nav tab.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do route every photograph and app screen through the two-layer plate so it starts in `safelight` duotone and ends in true colour.",
+      "Do add new scroll effects to the single smoothed render loop.",
+      "Do keep crimson (#d0142f) to live state and the contact action, so the Live Crimson Rule still holds at a glance.",
+      "Do swap ground and ink in the lit room, remove the duotone and wash layers, and keep the tab white.",
+      "Do give every new section a fixed frame number on the rail in `NN / NN` form.",
+      "Do set hairlines at 1px using the line colour.",
+      "Do keep text and rule blocks 18px clear of the rail beyond the gutter.",
+      "Do provide the reduced-motion version of every new effect: in place, true colour, no pin.",
+      "Do gate hover behind `(hover: hover) and (pointer: fine)` and mirror essential row states on `:focus-visible`."
+    ],
+    "donts": [
+      "Don't add a second accent or put crimson on anything that is not live or the contact action.",
+      "Don't bake duotone into a photograph or fake it with a blend; photographs and app screens take the `safelight` filter. The `multiply` wash belongs to logos, masked to each logo's shape; prints have no backing, so logos stand directly on the ground. The black Render mark inverts in the dark room.",
+      "Don't put a shadow on plates, prints, buttons or rows; the tab lift is the system's only drop shadow.",
+      "Don't round plates, prints, buttons, rows or fields; the tab's shoulders and pill states are the only curves.",
+      "Don't place a kicker or eyebrow above a section heading; the number lives on the rail.",
+      "Don't set sentences in mono or add a third typeface.",
+      "Don't trigger scroll effects on entering the viewport or give them separate timers; they scrub with position.",
+      "Don't treat placeholder rows or ledger cells as content; the component is the system, and its text comes from the owner."
+    ]
+  }
+}

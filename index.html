@@ -1,114 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jheckryz Osio</title>
-  <link rel="stylesheet" href="css/main.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/footers/">
-  <script src="file:///C:/Users/Jeax/Downloads/bootstrap-5.3.6-examples/bootstrap-5.3.6-examples/assets/js/color-modes.js"></script>
-  <link href="file:///C:/Users/Jeax/Downloads/bootstrap-5.3.6-examples/bootstrap-5.3.6-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js"></script>
+  <meta name="description" content="Portfolio of Jheckryz Osio, BS Information Technology student at St. Dominic College of Asia.">
+  <link rel="icon" href="images/logo_light.png">
+  <link rel="preload" href="css/fonts/host-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try { document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark'; } catch (e) {}</script>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/script.js" defer></script>
 </head>
-
 <body>
-  <div id="vanta-bg"></div>
+  <a class="skip" href="#about">Skip to content</a>
 
-  <header class="fade-in-top  navigation">
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="top-bar">
-      <div class="logo">
-        <img id="logo" src="images/Logo.png" alt="logo">
-      </div>
+  <svg class="defs" aria-hidden="true" width="0" height="0">
+    <filter id="safelight" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.17 0.82 1"/>
+        <feFuncG type="table" tableValues="0.02 0.07 0.92"/>
+        <feFuncB type="table" tableValues="0.05 0.17 0.90"/>
+      </feComponentTransfer>
+    </filter>
+  </svg>
 
-      <nav>
-        <div class="theme-toggle" id="theme-switch">
-          <div class="circle"></div>
-        </div>
-        <ul class="nav-links" id="nav-links">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Me</a></li>
-          <li><a href="techstack.html">Tech Stack</a></li>
-          
-        </ul>
-      </nav>
-    </div>
+  <header class="topbar">
+    <nav class="tab" aria-label="Main">
+      <a class="tab-item tab-logo" href="#hero" aria-label="Jheckryz Osio, back to top" data-nav="hero">
+        <img src="images/logo-mark.png" alt="">
+      </a>
+      <a class="tab-item" href="#about" data-nav="about">About</a>
+      <a class="tab-item" href="#works" data-nav="works">Works</a>
+      <a class="tab-item" href="#stack" data-nav="stack">Stack</a>
+      <a class="tab-item" href="#certs" data-nav="certs">Certs</a>
+      <a class="tab-item" href="#contact" data-nav="contact">Contact</a>
+      <button class="tab-item tab-theme" id="theme" type="button" aria-label="Switch to light mode">
+        <img class="icon-sun" src="svg/light_mode_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg" alt="" width="20" height="20">
+        <img class="icon-moon" src="svg/dark_mode_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg" alt="" width="20" height="20">
+      </button>
+      <span class="tab-mark" id="mark" aria-hidden="true"></span>
+    </nav>
   </header>
 
+  <p class="rail" id="rail" aria-hidden="true">00 / 05</p>
+
   <main>
-    
-    <section class="intro">
-      <div class="name fade-in-bottom name-delay">
-        <h1>Jheckryz<br>Osio</h1>
-      </div>
+    <section class="hero" id="hero" data-section data-label="00 / 05">
+      <div class="hero-stage">
+        <div class="hero-top">
+        <!-- TODO(offer): when the freelance offer is ready, make it the first sentence below. -->
+        <p class="hero-note" data-hero-fade>An Information Technology student interested in web & app development, graphic design, and creating innovative solutions.</p>
 
-      <div class="right-intro fade-in-bottom counter-delay">
-        <div class="profile-img fade-in-top">
-          <img src="images/portrait4.jpg" alt="Profile Picture"/>
+        <a class="cta" href="#contact" data-hero-fade>
+          Get in touch
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
         </div>
-      </div>
 
-      <div class="bottom-right-controls">
-        <div class="counter">
-          <span class="current">01</span><span class="total">/03</span>
-        </div>
-        <div class="arrow-buttons">
-          <button class="arrow-button">←</button>
-          <a href="about.html" class="arrow-button">→</a>
+        <h1 class="hero-name"><span id="hero-name">Jheckryz</span></h1>
+
+        <div class="fan">
+          <figure class="plate" data-plate data-tilt="5">
+            <img src="images/portrait2.jpg" alt="Portrait of Jheckryz Osio in a white jacket" width="1176" height="1217" data-develop>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="cards fade-in-bottom cards-delay">
-      <a href="about.html" class="card-link">
-        <div class="cardinfo">
-          <h4>Welcome to my portfolio!</h4>
-          <div class="card-header">
-            <h3>Learn all about me, my<br>works, and my life</h3>
-            <div class="card-arrow">↗</div>
+    <section class="about" id="about" data-section data-label="01 / 05">
+      <h2>Hello, I'm Jheckryz!</h2>
+      <div class="about-copy">
+        <p class="about-lead" id="about-lead">A student at St. Dominic College of Asia, studying BS in Information Technology. As an aspiring IT professional, I've always been interested in problem-solving and I want to explore the world of technology from software development and web design to cybersecurity and data management.</p>
+        <p class="about-rest">My goal is to build a strong foundation in IT and use my knowledge to create innovative and meaningful digital solutions. I'm excited to continue learning, collaborating, and stepping into opportunities that will shape me into a well-rounded tech professional.</p>
+      </div>
+    </section>
+
+    <section class="works" id="works" data-section data-label="02 / 05">
+      <h2 class="sr-only">My Works</h2>
+      <!-- TODO(projects): to add a project, copy this article and swap its images and text. -->
+      <article class="work">
+        <div class="work-stage">
+          <div class="marquee" aria-hidden="true">
+            <p class="marquee-row" data-marquee="1">DominiMap DominiMap DominiMap DominiMap DominiMap DominiMap</p>
+            <p class="marquee-row marquee-ghost" data-marquee="-1">DominiMap DominiMap DominiMap DominiMap DominiMap DominiMap</p>
           </div>
-          <p>
-            I’m a student at St. Dominic College of Asia studying Bachelor of Science in Information Technology.
-          </p>
+
+          <figure class="screen screen-a" data-screen="-1">
+            <div class="screen-glass"><img src="images/dominimap1.png" alt="DominiMap showing the Hyflex and Basement floor plan" width="446" height="1000" data-develop></div>
+          </figure>
+          <figure class="screen screen-b" data-screen="1">
+            <div class="screen-glass"><img src="images/dominimap2.png" alt="DominiMap showing a directory of rooms on each floor" width="350" height="778" data-develop></div>
+          </figure>
+
+          <div class="work-copy" data-work-copy>
+            <h3>DominiMap</h3>
+            <!-- TODO(dominimap): add your role, solo or team, what you built, and any links here. -->
+            <p>An indoor campus navigation application for St. Dominic College of Asia that uses Bluetooth Low Energy (BLE) technology to provide real-time tracking and digital mapping, helping students and visitors navigate the campus more easily and efficiently.</p>
+          </div>
+          <ol class="work-figs" data-work-copy>
+            <li><span>Fig. 01</span> Hyflex / Basement floor map</li>
+            <li><span>Fig. 02</span> Rooms listed by floor</li>
+          </ol>
         </div>
-      </a>
+      </article>
+      <div class="projects">
+        <h3>More Projects</h3>
+        <div class="rows">
+          <!-- TODO(iot: replace each "To be added". Add photos, diagrams or screenshots in the evidence box. Copy this block for more IoT projects.) -->
+          <details class="row">
+            <summary>
+              <h4>IoT Project</h4>
+              <span class="row-status">To be added</span>
+              <svg class="row-icon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </summary>
+            <div class="row-body">
+              <dl class="row-fields">
+                <div><dt>Project title</dt><dd>To be added</dd></div>
+                <div><dt>Description</dt><dd>To be added</dd></div>
+                <div><dt>Objectives</dt><dd>To be added</dd></div>
+                <div><dt>Technologies and components</dt><dd>To be added</dd></div>
+                <div><dt>My role and contribution</dt><dd>To be added</dd></div>
+                <div><dt>Output or result</dt><dd>To be added</dd></div>
+              </dl>
+              <div class="evidence">Photos, diagrams or screenshots to be added</div>
+            </div>
+          </details>
+          <!-- TODO(capstone: replace each "To be added". Add screenshots, diagrams or documentation in the evidence box.) -->
+          <details class="row">
+            <summary>
+              <h4>Capstone Project</h4>
+              <span class="row-status">To be added</span>
+              <svg class="row-icon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </summary>
+            <div class="row-body">
+              <dl class="row-fields">
+                <div><dt>Project title</dt><dd>To be added</dd></div>
+                <div><dt>Description</dt><dd>To be added</dd></div>
+                <div><dt>Objectives</dt><dd>To be added</dd></div>
+                <div><dt>Technologies used</dt><dd>To be added</dd></div>
+                <div><dt>Team members</dt><dd>To be added</dd></div>
+                <div><dt>My role</dt><dd>To be added</dd></div>
+                <div><dt>Current status</dt><dd>To be added</dd></div>
+              </dl>
+              <div class="evidence">Screenshots, diagrams or documentation to be added</div>
+            </div>
+          </details>
+          <!-- TODO(third-year: one block per significant project, for example software, databases, websites, systems, research, programming or networking work.) -->
+          <details class="row">
+            <summary>
+              <h4>Third-Year Course Projects</h4>
+              <span class="row-status">To be added</span>
+              <svg class="row-icon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </summary>
+            <div class="row-body">
+              <dl class="row-fields">
+                <div><dt>Project title</dt><dd>To be added</dd></div>
+                <div><dt>Course</dt><dd>To be added</dd></div>
+                <div><dt>Description</dt><dd>To be added</dd></div>
+                <div><dt>My contribution</dt><dd>To be added</dd></div>
+              </dl>
+              <div class="evidence">Project output to be added</div>
+            </div>
+          </details>
+        </div>
+      </div>
     </section>
-<div class="container">
-  <footer class="custom-footer">
-    
-   
-    <div class="bootstrap-icons-wrapper d-flex justify-content-center pt-3 pb-2">
-      <a href="https://github.com/jheckryz" target="_blank" class="btn btn-dark btn-lg btn-floating mx-2" role="button">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/jheckryz-osio-014075247/e" target="_blank" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #0077b5;" role="button">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
 
-    <div class="custom-footer-text mt-1">
-      <p>Jheckryz Osio &copy;2025</p>
-    </div>
-    
-  </footer>
-</div>
+    <section class="stack" id="stack" data-section data-label="03 / 05">
+      <div class="spin-pin">
+        <div class="spin-stage">
+          <h2>Tech Stack</h2>
+          <svg class="spin-ring" id="spin-ring" aria-hidden="true">
+            <g id="spin-ring-center">
+              <circle class="spin-ring-line" id="spin-ring-line" fill="none" stroke="currentColor"/>
+              <g id="spin-ring-ticks"></g>
+              <g id="spin-ring-dot"><circle class="spin-ring-pointer" r="4" fill="currentColor"/></g>
+            </g>
+          </svg>
+          <ol class="spin-list">
+            <li class="frame"><div class="print"><img src="images/cprog.png" alt=""><i class="wash"></i></div><p><span>01</span> C</p></li>
+            <li class="frame"><div class="print"><img src="images/java2.webp" alt=""><i class="wash"></i></div><p><span>02</span> Java</p></li>
+            <li class="frame"><div class="print"><img src="images/html2.png" alt=""><i class="wash"></i></div><p><span>03</span> HTML</p></li>
+            <li class="frame"><div class="print"><img src="images/css2.png" alt=""><i class="wash"></i></div><p><span>04</span> CSS</p></li>
+            <li class="frame"><div class="print"><img src="images/js.png" alt=""><i class="wash"></i></div><p><span>05</span> JavaScript</p></li>
+            <li class="frame"><div class="print"><img src="images/oracle.jpg" alt=""><i class="wash"></i></div><p><span>06</span> Oracle</p></li>
+            <li class="frame"><div class="print"><img src="images/android-studio.png" alt=""><i class="wash"></i></div><p><span>07</span> Android Studio</p></li>
+            <li class="frame"><div class="print"><img src="images/vs.png" alt=""><i class="wash"></i></div><p><span>08</span> VS Code</p></li>
+            <li class="frame"><div class="print"><img src="images/nodejs.png" alt=""><i class="wash"></i></div><p><span>09</span> Node.js</p></li>
+            <li class="frame"><div class="print"><img src="images/express.png" alt=""><i class="wash"></i></div><p><span>10</span> Express</p></li>
+            <li class="frame"><div class="print"><img src="images/Postman.png" alt=""><i class="wash"></i></div><p><span>11</span> Postman</p></li>
+            <li class="frame"><div class="print"><img src="images/MongoDB.png" alt=""><i class="wash"></i></div><p><span>12</span> MongoDB</p></li>
+            <li class="frame"><div class="print"><img src="images/render-clean.png" alt=""><i class="wash"></i></div><p><span>13</span> Render</p></li>
+            <li class="frame"><div class="print"><img src="images/dart-clean.png" alt=""><i class="wash"></i></div><p><span>14</span> Dart</p></li>
+            <li class="frame"><div class="print"><img src="images/flutter.png" alt=""><i class="wash"></i></div><p><span>15</span> Flutter</p></li>
+            <li class="frame"><div class="print"><img src="images/firebase.png" alt=""><i class="wash"></i></div><p><span>16</span> Firebase</p></li>
+          </ol>
+          <p class="spin-caption" id="spin-caption" aria-hidden="true"><span id="spin-num"></span> <strong id="spin-name"></strong></p>
+          <p class="spin-hint" aria-hidden="true">Scroll<span class="spin-hint-mouse"> or draw circles</span> to spin</p>
+        </div>
+      </div>
+    </section>
 
+    <section class="certs" id="certs" data-section data-label="04 / 05">
+      <h2>Certifications &amp; Achievements</h2>
+      <div class="ledgers">
+        <div class="ledger">
+          <h3>Certifications</h3>
+          <table>
+            <colgroup><col><col><col><col></colgroup>
+            <thead><tr><th scope="col">Certificate</th><th scope="col">Issued by</th><th scope="col">Date earned</th><th scope="col">Certificate copy</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Certificate">Microsoft Office Specialist: Word Associate (Office 2019)</td><td data-label="Issued by">Microsoft / Certiport</td><td data-label="Date earned">March 13, 2024</td><td data-label="Certificate copy"><a href="certificates/mos-word-2019.png" target="_blank" rel="noopener" aria-label="View Word Associate certificate">View certificate</a></td></tr>
+              <tr><td data-label="Certificate">Microsoft Office Specialist: PowerPoint Associate (Office 2019)</td><td data-label="Issued by">Microsoft / Certiport</td><td data-label="Date earned">May 30, 2024</td><td data-label="Certificate copy"><a href="certificates/mos-powerpoint-2019.png" target="_blank" rel="noopener" aria-label="View PowerPoint Associate certificate">View certificate</a></td></tr>
+              <tr><td data-label="Certificate">IT Specialist: Databases</td><td data-label="Issued by">Certiport / Pearson</td><td data-label="Date earned">May 7, 2025</td><td data-label="Certificate copy"><a href="certificates/it-specialist-databases.png" target="_blank" rel="noopener" aria-label="View IT Specialist Databases certificate">View certificate</a></td></tr>
+              <tr><td data-label="Certificate">IT Specialist: HTML and CSS</td><td data-label="Issued by">Certiport / Pearson</td><td data-label="Date earned">February 4, 2026</td><td data-label="Certificate copy"><a href="certificates/it-specialist-html-css.png" target="_blank" rel="noopener" aria-label="View IT Specialist HTML and CSS certificate">View certificate</a></td></tr>
+              <tr><td data-label="Certificate">IT Specialist: Artificial Intelligence</td><td data-label="Issued by">Certiport / Pearson</td><td data-label="Date earned">June 3, 2026</td><td data-label="Certificate copy"><a href="certificates/it-specialist-artificial-intelligence.png" target="_blank" rel="noopener" aria-label="View IT Specialist Artificial Intelligence certificate">View certificate</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ledger">
+          <h3>Course Completions</h3>
+          <!-- TODO(courses: one row per course, from Cisco Networking Academy, Oracle Academy, AWS Academy, Microsoft, Coursera, Google, Udemy or other recognized platforms.) -->
+          <table>
+            <colgroup><col><col><col><col></colgroup>
+            <thead><tr><th scope="col">Course</th><th scope="col">Platform</th><th scope="col">Completed</th><th scope="col">Verified badge</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Course">Introduction to Cybersecurity</td><td data-label="Platform">Cisco Networking Academy</td><td data-label="Completed">To be added</td><td data-label="Verified badge"><a href="certificates/cisco-intro-cybersecurity.png" target="_blank" rel="noopener" aria-label="View Introduction to Cybersecurity verified badge">View badge</a></td></tr>
+              <tr><td data-label="Course">Introduction to IoT</td><td data-label="Platform">Cisco Networking Academy</td><td data-label="Completed">To be added</td><td data-label="Verified badge"><a href="certificates/cisco-intro-iot.png" target="_blank" rel="noopener" aria-label="View Introduction to IoT verified badge">View badge</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ledger">
+          <h3>Other Achievements</h3>
+          <!-- TODO(achievements: one row each, for example awards, scholarships, academic recognition, trainings, workshops, conferences, research presentations or certificates of participation.) -->
+          <table>
+            <colgroup><col><col><col><col></colgroup>
+            <thead><tr><th scope="col">Achievement</th><th scope="col">Awarded by</th><th scope="col" colspan="2">Date</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Achievement">To be added</td><td data-label="Awarded by">To be added</td><td data-label="Date" colspan="2">To be added</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-
-    
-      
-    
+    <section class="contact" id="contact" data-section data-label="05 / 05">
+      <div class="contact-field" id="contact-field">
+        <h2>Contact Me</h2>
+        <a class="contact-email" href="mailto:osiojheckryz@gmail.com">osiojheckryz@gmail.com</a>
+        <div class="contact-row">
+          <button class="copy" id="copy" type="button" data-email="osiojheckryz@gmail.com">Copy email</button>
+          <p class="copy-status" id="copy-status" role="status"></p>
+          <ul class="contact-links">
+            <li><a href="https://github.com/jheckryz" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/in/jheckryz-osio/" target="_blank" rel="noopener">LinkedIn<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+          </ul>
+        </div>
+        <footer class="contact-foot">Jheckryz Osio &copy;2026</footer>
+      </div>
+    </section>
   </main>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
