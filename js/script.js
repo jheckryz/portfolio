@@ -42,11 +42,27 @@
     }
   });
 
+  /* ---------- The step labels follow the demo as it plays ---------- */
+  const demo = $('.work-iot video'), stepList = $('.iot-steps'), steps = $$('li', stepList);
+  demo.addEventListener('timeupdate', () => {
+    if (demo.paused) return;
+    stepList.classList.add('is-live');
+    const now = steps.filter(li => +li.dataset.at <= demo.currentTime).pop();
+    for (const li of steps) li.classList.toggle('is-on', li === now);
+  });
+
   /* ---------- Name: each letter takes its own hover ---------- */
   const heroName = $('#hero-name');
   heroName.parentElement.setAttribute('aria-label', heroName.textContent);
   heroName.setAttribute('aria-hidden', 'true');
   heroName.innerHTML = [...heroName.textContent].map(c => `<span>${c}</span>`).join('');
+  // Project titles get the same hover, grouped by word so long ones still wrap.
+  for (const title of $$('.work-copy h3, .scan-lit h3')) {
+    title.setAttribute('aria-label', title.textContent);
+    title.innerHTML = title.textContent.split(' ')
+      .map(w => `<span aria-hidden="true">${[...w].map(c => `<span>${c}</span>`).join('')}</span>`)
+      .join(' ');
+  }
 
   /* ---------- Nav state: mark and rail follow the section in view ---------- */
   const sections = $$('[data-section]').map(el => ({
@@ -77,8 +93,8 @@
   /* ---------- Scrubbed effects ---------- */
   const byId = id => sections.find(s => s.id === id);
   const hero = byId('hero'), stack = byId('stack'), contact = byId('contact');
-  // Works also holds the project rows, so the pin is measured from its article alone.
-  const works = { el: $('.work'), top: 0, h: 0 };
+  // Works also holds the project rows, so each pin is measured from its article alone.
+  const works = $$('.work:not(.work-iot)').map(el => ({ el, top: 0, h: 0, screens: [], rows: [], copies: [] }));
   const fades = $$('[data-hero-fade]');
   const word = el => {
     const parts = el.textContent.trim().split(/\s+/);
@@ -95,7 +111,7 @@
     return duo;
   };
 
-  let plates = [], screens = [], rows = [], copies = [], words = [], frames = [];
+  let plates = [], words = [], frames = [], iot = null;
   const lead = $('#about-lead'), field = $('#contact-field');
   const WIND_STEP = 30; // degrees between neighbouring tools on the helix
   const spin = { pin: $('.spin-pin'), stage: $('.spin-stage'), top: 0, h: 0, radius: 0, rise: 0, max: 0, apart: 0, last: 0, front: -1 };
@@ -104,11 +120,31 @@
 
   if (!still) {
     plates = $$('[data-plate]').map(el => {
-      return { el, duo: addDuo($('img', el)), r: +el.dataset.tilt };
+      const [fx, fy] = el.dataset.focus.split(' ').map(n => n / 100);
+      return { el, duo: addDuo($('img', el)), r: +el.dataset.tilt, fx, fy };
     });
-    screens = $$('[data-screen]').map(el => ({ el, dir: +el.dataset.screen, duo: addDuo($('img', el)) }));
-    rows = $$('[data-marquee]').map(el => ({ el, dir: +el.dataset.marquee }));
-    copies = $$('[data-work-copy]');
+    for (const w of works) {
+      w.screens = $$('[data-screen]', w.el).map(el => ({ el, dir: +el.dataset.screen, duo: addDuo($('img', el)) }));
+      w.rows = $$('[data-marquee]', w.el).map(el => ({ el, dir: +el.dataset.marquee }));
+      w.copies = $$('[data-work-copy]', w.el);
+    }
+    // IoT: the demo waits on its first frame until the scan has passed, so colour and crimson always match.
+    const stageEl = $('.work-iot .work-stage'), lit = $('.scan-lit');
+    const ghost = lit.cloneNode(true);
+    ghost.className = 'scan-ghost';
+    ghost.setAttribute('aria-hidden', 'true');
+    ghost.querySelector('h3').removeAttribute('aria-label');
+    lit.before(ghost);
+    iot = { el: $('.work-iot'), stage: stageEl, lit, line: $('.scan-line'), video: $('.work-iot video'), glass: $('.work-iot .screen-glass'), duo: addDuo($('.screen-still')), top: 0, h: 0, litTop: 0, litH: 0, glassTop: 0, glassH: 0, scanned: false, visible: false };
+    iot.sync = () => {
+      if (iot.scanned && iot.visible) { iot.video.play().catch(() => { /* blocked autoplay: the controls still work */ }); return; }
+      iot.video.pause();
+      if (!iot.scanned && iot.video.currentTime > .2) {
+        iot.video.currentTime = .15;
+        $('.iot-steps').classList.remove('is-live');
+      }
+    };
+    new IntersectionObserver(([e]) => { iot.visible = e.isIntersecting; iot.sync(); }).observe(iot.video);
     words = word(lead);
     frames = $$('.frame').map((el, i) => {
       const [num, ...name] = $('p', el).textContent.trim().split(/\s+/);
@@ -136,17 +172,30 @@
       s.top = r.top + sy;
       s.h = r.height;
     }
-    const wr = works.el.getBoundingClientRect();
-    works.top = wr.top + sy;
-    works.h = wr.height;
-    // The picture ends straight and smaller, against the right margin and just above the name.
-    const heroName = $('.hero-name');
-    const gutter = parseFloat(getComputedStyle(heroName).paddingLeft) + (phone ? 0 : 18);
+    for (const w of works) {
+      const r = w.el.getBoundingClientRect();
+      w.top = r.top + sy;
+      w.h = r.height;
+    }
+    if (iot) {
+      const r = iot.el.getBoundingClientRect(), stageTop = iot.stage.getBoundingClientRect().top;
+      const lr = iot.lit.getBoundingClientRect(), gr = iot.glass.getBoundingClientRect();
+      iot.top = r.top + sy;
+      iot.h = r.height;
+      iot.litTop = lr.top - stageTop;
+      iot.litH = lr.height;
+      iot.glassTop = gr.top - stageTop;
+      iot.glassH = gr.height;
+    }
+    // The picture ends as a circle in the middle of the screen, cropped around the face.
     for (const pl of plates) {
-      const endW = innerWidth * (phone ? .5 : .2);
-      pl.endS = endW / pl.el.offsetWidth;
-      pl.endX = innerWidth / 2 - gutter - endW / 2;
-      pl.endY = heroName.offsetTop - 12 - endW * .625 - pl.el.offsetTop;
+      const w = pl.el.offsetWidth, h = pl.el.offsetHeight, r = w * .4;
+      const cx = clamp(w * pl.fx, r, w - r), cy = clamp(h * pl.fy, r, h - r);
+      pl.round = r;
+      pl.inset = [cy - r, w - cx - r, h - cy - r, cx - r];
+      pl.endS = Math.min(innerWidth * (phone ? .44 : .2), vh * .26) / (r * 2);
+      pl.endX = -pl.endS * (cx - w / 2);
+      pl.endY = vh / 2 - pl.el.offsetTop - pl.endS * (cy - h / 2);
     }
     lead.dataset.top = lead.getBoundingClientRect().top + sy;
     lead.dataset.h = lead.offsetHeight;
@@ -216,6 +265,8 @@
       plates.forEach(pl => {
         const t = inOut(clamp((p - .04) / .62));
         pl.el.style.transform = `translate(-50%,-50%) translate(${lerp(0, pl.endX, t)}px,${lerp(0, pl.endY, t)}px) rotate(${lerp(pl.r, 0, t)}deg) scale(${lerp(1, pl.endS, t)})`;
+        // The square closes in on the face as its corners round, and ends as an exact circle.
+        pl.el.style.clipPath = `inset(${pl.inset.map(v => v * t + 'px').join(' ')} round ${pl.round * t}px)`;
         pl.duo.style.opacity = 1 - clamp((p - .2) / .4);
       });
       const fade = 1 - clamp((p - .08) / .2);
@@ -234,22 +285,33 @@
       });
     }
 
-    if (inView(works, y)) {
-      const p = clamp((y - works.top) / (works.h - vh));
+    for (const w of works) {
+      if (!inView(w, y)) continue;
+      const p = clamp((y - w.top) / (w.h - vh));
       const t = inOut(clamp(p / .6));
-      screens.forEach((s, i) => {
+      w.screens.forEach((s, i) => {
         const x = s.dir < 0 ? lerp(-78, -106, t) : lerp(-22, 6, t);
         s.el.style.transform = `translate(${x}%,-50%) perspective(1400px) rotateY(${lerp(-s.dir * 28, -s.dir * 14, t)}deg) rotate(${lerp(s.dir * 7, s.dir * 3, t)}deg) scale(${lerp(phone ? .8 : .62, 1, t)})`;
         s.duo.style.opacity = 1 - clamp((p - .16 - i * .08) / .42);
       });
-      for (const r of rows) {
+      for (const r of w.rows) {
         r.el.style.transform = `translateX(${r.dir > 0 ? lerp(2, -48, p) : lerp(-48, 2, p)}%)`;
       }
       const o = clamp((p - (phone ? .25 : .55)) / .16);
-      for (const c of copies) {
+      for (const c of w.copies) {
         c.style.opacity = o;
         c.style.transform = `translateY(${lerp(16, 0, inOut(o))}px)`;
       }
+    }
+
+    if (iot && inView(iot, y)) {
+      const t = clamp((clamp((y - iot.top) / (iot.h - vh)) - .05) / .75);
+      const lineY = t * vh;
+      iot.line.style.transform = `translateY(${lineY}px)`;
+      iot.line.style.opacity = t > 0 && t < 1 ? 1 : 0;
+      iot.lit.style.clipPath = t < 1 ? `inset(0 0 ${Math.max(0, iot.litH - (lineY - iot.litTop))}px 0)` : '';
+      iot.duo.style.clipPath = `inset(${clamp(lineY - iot.glassTop, 0, iot.glassH)}px 0 0 0)`;
+      if ((t >= 1) !== iot.scanned) { iot.scanned = t >= 1; iot.sync(); }
     }
 
     if (inView(stack, y)) {
