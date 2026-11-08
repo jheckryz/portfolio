@@ -433,7 +433,31 @@ ol, ul { list-style: none; }
   height: 16vh;
   background: linear-gradient(transparent, color-mix(in srgb, var(--crimson) 24%, transparent));
 }
-.work-copy h3 span, .scan-lit h3 span, .scan-ghost h3 span { display: inline-block; }
+.work-copy h3 span, .scan-lit h3 span, .scan-ghost h3 span, .ar-copy h3 span { display: inline-block; }
+/* The capstone stage: an AR viewfinder whose brackets close in and lock onto the phone as it comes into focus. */
+.work-ar { height: 280vh; height: 280svh; }
+.work-ar .work-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 96px);
+  padding-inline: var(--gutter) calc(var(--gutter) + var(--rail-clear));
+}
+.work-ar .screen-ar { --h: min(78vh, 150vw); position: relative; top: auto; left: auto; isolation: isolate; }
+.ar-copy { max-width: 40em; }
+.ar-label { color: var(--dim); font: 400 12px/1.4 var(--mono); }
+.ar-copy h3 { margin: 10px 0 14px; font-size: clamp(3rem, 8vw, 7.5rem); font-weight: 800; line-height: .9; letter-spacing: -.05em; }
+.ar-sub { max-width: 34em; margin-bottom: 18px; color: var(--dim); font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.4; text-wrap: pretty; }
+.ar-desc { max-width: 36em; text-wrap: pretty; }
+.screen-placeholder { display: grid; place-items: center; height: 100%; padding: 20px; color: var(--dim); font: 400 12px/1.5 var(--mono); text-align: center; }
+.ar-frame { position: absolute; z-index: 2; pointer-events: none; }
+.ar-frame span { position: absolute; width: 28px; height: 28px; border: 2px solid var(--ink); opacity: .55; transition: border-color 200ms ease, opacity 200ms ease; }
+.ar-frame span:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.ar-frame span:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.ar-frame span:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.ar-frame span:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+.ar-frame.is-locked span { border-color: var(--crimson); opacity: 1; }
+
 /* The role line under a project title. */
 .work-role { margin: -4px 0 14px; color: var(--ink); font: 400 12px/1.4 var(--mono); }
 .scan-lit .work-role { margin: -6px 0 18px; }
@@ -595,7 +619,9 @@ img[src*='render'] + .wash { inset: 2%; }
 }
 .row-fields dt { font-weight: 500; }
 .row-fields dd { color: var(--dim); }
+/* Keeps its own height beside a long field list instead of stretching to match it. */
 .evidence {
+  align-self: start;
   display: grid;
   place-items: center;
   min-height: 220px;
@@ -725,6 +751,11 @@ html:has(.sheet[open]) { overflow: hidden; }
 .sheet-close:active { transform: scale(.97); }
 .sheet h2 { margin-bottom: clamp(24px, 4vh, 36px); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; text-wrap: balance; }
 .sheet .row-fields > div { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+.row-fields dd li + li { margin-top: 6px; }
+/* Objectives are full sentences, so each gets a hanging dash. */
+.sheet-points li { position: relative; padding-left: 16px; }
+.sheet-points li::before { content: '–'; position: absolute; left: 0; }
+.sheet-points li + li { margin-top: 12px; }
 .copy-status { min-height: 1.5em; }
 .contact-links { display: flex; gap: 28px; margin-left: auto; }
 .contact-links a {
@@ -761,7 +792,7 @@ html:has(.sheet[open]) { overflow: hidden; }
 .frame p span { transition: color 160ms ease; }
 .tab-theme img { transition: rotate 300ms var(--ease-out); }
 .cta { transition: transform 160ms var(--ease-out), background-color 160ms ease, color 160ms ease; }
-.hero-name span span, .work-copy h3 span span, .scan-lit h3 span span { transition: color 500ms ease; }
+.hero-name span span, .work-copy h3 span span, .scan-lit h3 span span, .ar-copy h3 span span { transition: color 500ms ease; }
 .row summary:focus-visible { outline-offset: -2px; }
 @media (hover: hover) and (pointer: fine) {
   /* Pointing at an image develops it ahead of the scroll. */
@@ -774,7 +805,7 @@ html:has(.sheet[open]) { overflow: hidden; }
   .tab-theme:hover img { rotate: 30deg; }
   .cta:hover { background: var(--ink); color: var(--ground); }
   /* Instant on, slow off, so the pointer leaves a trail through the name. */
-  .hero-name span span:hover, .work-copy h3 span span:hover, .scan-lit h3 span span:hover { color: var(--crimson); transition-duration: 0ms; }
+  .hero-name span span:hover, .work-copy h3 span span:hover, .scan-lit h3 span span:hover, .ar-copy h3 span span:hover { color: var(--crimson); transition-duration: 0ms; }
   .row summary:hover { color: var(--on-crimson); }
   .row summary:hover::before { clip-path: inset(0); }
   .row summary:hover h4 { transform: translateX(8px); }
@@ -832,6 +863,12 @@ html:has(.sheet[open]) { overflow: hidden; }
   /* Stacked: the phone takes what the long text leaves. */
   .work-iot .work-stage { grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; row-gap: 14px; padding: 64px var(--gutter) 0; }
   .work-iot .screen-solo { --h: min(100svh - 578px, 84vw); }
+  .work-ar .work-stage { grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; row-gap: 14px; padding: 64px var(--gutter) 0; }
+  .work-ar .screen-ar { --h: min(100svh - 530px, 84vw); order: -1; }
+  .ar-copy { width: 100%; max-width: none; }
+  .ar-copy h3 { margin: 4px 0 8px; font-size: 2.75rem; }
+  .ar-sub { margin-bottom: 10px; font-size: .875rem; line-height: 1.35; }
+  .ar-desc { font-size: .9375rem; line-height: 1.4; }
   .scan-text { width: 100%; }
   .scan-lit .work-role { margin: -2px 0 10px; }
   .scan-lit h3, .scan-ghost h3 { margin-block: 6px 10px; font-size: 1.5rem; line-height: 1.05; letter-spacing: -.03em; }
@@ -845,7 +882,9 @@ html:has(.sheet[open]) { overflow: hidden; }
   .work-stage { --sh: min(100svh - 470px, 97vw); }
   .work .marquee { display: none; }
   .screen { top: calc(72px + var(--sh) / 2); }
-  .work-iot .screen-solo { --h: min(100svh - 436px, 84vw); }
+  .work-iot .screen-solo { --h: min(100svh - 460px, 84vw); }
+  .work-ar .screen-ar { --h: min(100svh - 470px, 84vw); }
+  .ar-sub { display: none; }
   .iot-steps { display: none; }
 }
 /* Short laptops: the project text reaches higher, so the marquee rides higher to keep its bright row clear of the title. */
@@ -870,7 +909,7 @@ html:has(.sheet[open]) { overflow: hidden; }
 
 /* ---------- Reduced motion: no pinning, everything in place, full colour ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .hero, .work, .work-iot { height: auto; }
+  .hero, .work, .work-iot, .work-ar { height: auto; }
   .hero-stage, .work-stage { position: relative; }
   .duo, .wash { display: none; }
   .tab, .topbar::before, .tab-mark, .sheet, .sheet::backdrop { transition: none !important; }

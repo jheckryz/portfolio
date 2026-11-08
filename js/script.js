@@ -65,7 +65,7 @@
   heroName.setAttribute('aria-hidden', 'true');
   heroName.innerHTML = [...heroName.textContent].map(c => `<span>${c}</span>`).join('');
   // Project titles get the same hover, grouped by word so long ones still wrap.
-  for (const title of $$('.work-copy h3, .scan-lit h3')) {
+  for (const title of $$('.work-copy h3, .scan-lit h3, .ar-copy h3')) {
     title.setAttribute('aria-label', title.textContent);
     title.innerHTML = title.textContent.split(' ')
       .map(w => `<span aria-hidden="true">${[...w].map(c => `<span>${c}</span>`).join('')}</span>`)
@@ -102,7 +102,7 @@
   const byId = id => sections.find(s => s.id === id);
   const hero = byId('hero'), stack = byId('stack'), contact = byId('contact');
   // Works also holds the project rows, so each pin is measured from its article alone.
-  const works = $$('.work:not(.work-iot)').map(el => ({ el, top: 0, h: 0, screens: [], rows: [], copies: [] }));
+  const works = $$('.work:not(.work-iot):not(.work-ar)').map(el => ({ el, top: 0, h: 0, screens: [], rows: [], copies: [] }));
   const fades = $$('[data-hero-fade]');
   const word = el => {
     const parts = el.textContent.trim().split(/\s+/);
@@ -119,7 +119,7 @@
     return duo;
   };
 
-  let plates = [], words = [], frames = [], iot = null;
+  let plates = [], words = [], frames = [], iot = null, ar = null;
   const lead = $('#about-lead'), field = $('#contact-field');
   const WIND_STEP = 30; // degrees between neighbouring tools on the helix
   const spin = { pin: $('.spin-pin'), stage: $('.spin-stage'), top: 0, h: 0, radius: 0, rise: 0, max: 0, apart: 0, last: 0, front: -1 };
@@ -154,6 +154,8 @@
       }
     };
     new IntersectionObserver(([e]) => { iot.visible = e.isIntersecting; iot.sync(); }).observe(iot.video);
+    ar = { el: $('.work-ar'), stage: $('.work-ar .work-stage'), phone: $('.screen-ar'), frame: $('.ar-frame'), parts: $$('.ar-copy > *'), top: 0, h: 0, base: null, dx: 0, dy: 0, locked: false };
+    ar.frame.hidden = false;
     words = word(lead);
     frames = $$('.frame').map((el, i) => {
       const [num, ...name] = $('p', el).textContent.trim().split(/\s+/);
@@ -185,6 +187,17 @@
       const r = w.el.getBoundingClientRect();
       w.top = r.top + sy;
       w.h = r.height;
+    }
+    if (ar) {
+      const r = ar.el.getBoundingClientRect();
+      ar.top = r.top + sy;
+      ar.h = r.height;
+      // Measure the phone where the layout puts it, then work out the offset to the middle of the screen.
+      ar.phone.style.transform = '';
+      const st = ar.stage.getBoundingClientRect(), pr = ar.phone.getBoundingClientRect();
+      ar.base = { x: pr.left - st.left, y: pr.top - st.top, w: pr.width, h: pr.height };
+      ar.dx = innerWidth / 2 - (ar.base.x + ar.base.w / 2);
+      ar.dy = vh / 2 - (ar.base.y + ar.base.h / 2);
     }
     if (iot) {
       const r = iot.el.getBoundingClientRect(), stageTop = iot.stage.getBoundingClientRect().top;
@@ -323,6 +336,29 @@
       iot.lit.style.clipPath = t < 1 ? `inset(0 0 ${Math.max(0, iot.litH - (lineY - iot.litTop))}px 0)` : '';
       iot.duo.style.clipPath = `inset(${clamp(lineY - iot.glassTop, 0, iot.glassH)}px 0 0 0)`;
       if ((t >= 1) !== iot.scanned) { iot.scanned = t >= 1; iot.sync(); }
+    }
+
+    if (ar && inView(ar, y)) {
+      const p = clamp((y - ar.top) / (ar.h - vh)), b = ar.base;
+      // The phone comes into focus and settles; the brackets follow a beat behind and lock on.
+      const t = inOut(clamp((p - .04) / .56)), k = inOut(clamp((p - .1) / .5));
+      const scale = lerp(1.18, 1, t), ox = lerp(ar.dx, 0, t), oy = lerp(ar.dy, 0, t);
+      ar.phone.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`;
+      ar.phone.style.filter = t >= 1 ? '' : `blur(${lerp(12, 0, t)}px)`;
+      const cx = b.x + b.w / 2 + ox, cy = b.y + b.h / 2 + oy, hw = b.w * scale / 2 + 14, hh = b.h * scale / 2 + 14;
+      const left = lerp(24, cx - hw, k), top = lerp(72, cy - hh, k);
+      const f = ar.frame.style;
+      f.left = left + 'px';
+      f.top = top + 'px';
+      f.width = lerp(innerWidth - 24, cx + hw, k) - left + 'px';
+      f.height = lerp(vh - 24, cy + hh, k) - top + 'px';
+      if ((k >= 1) !== ar.locked) { ar.locked = k >= 1; ar.frame.classList.toggle('is-locked', ar.locked); }
+      ar.parts.forEach((el, i) => {
+        const o = clamp((p - .6 - i * .05) / .14);
+        el.style.opacity = o;
+        el.style.visibility = o === 0 ? 'hidden' : '';
+        el.style.transform = `translateY(${lerp(18, 0, inOut(o))}px)`;
+      });
     }
 
     if (inView(stack, y)) {
