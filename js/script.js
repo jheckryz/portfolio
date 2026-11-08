@@ -79,7 +79,9 @@
   }));
   const mark = $('#mark');
   const rail = $('#rail');
-  let vh = innerHeight, phone = innerWidth < 800, active = null;
+  // Project stages switch to their stacked layout on phones and portrait tablets; keep in step with the CSS.
+  const COMPACT = matchMedia('(max-width: 799px), (max-width: 1199px) and (orientation: portrait), (max-height: 500px)');
+  let vh = innerHeight, phone = innerWidth < 800, compact = COMPACT.matches, active = null;
 
   const placeMark = link => {
     mark.style.transform = `translateX(${link.offsetLeft + link.offsetWidth / 2 - 6}px)`;
@@ -177,7 +179,16 @@
   const layout = () => {
     vh = innerHeight;
     phone = innerWidth < 800;
+    compact = COMPACT.matches;
+    // In the stacked layout each article is padded by its text's height, so the text has room after the pin.
+    for (const art of $$('.work')) {
+      const text = $('.work-copy, .scan-text, .ar-copy', art), stage = $('.work-stage', art);
+      const below = text.getBoundingClientRect().bottom - stage.getBoundingClientRect().bottom;
+      art.style.setProperty('--text-h', compact ? (below > 0 ? below + 48 : 0) + 'px' : '');
+    }
     const sy = scrollY;
+    // How far a stage stays pinned: its article's height without that padding.
+    const pinned = (el, r) => r.height - parseFloat(getComputedStyle(el).paddingBottom);
     for (const s of sections) {
       const r = s.el.getBoundingClientRect();
       s.top = r.top + sy;
@@ -187,11 +198,13 @@
       const r = w.el.getBoundingClientRect();
       w.top = r.top + sy;
       w.h = r.height;
+      w.span = pinned(w.el, r);
     }
     if (ar) {
       const r = ar.el.getBoundingClientRect();
       ar.top = r.top + sy;
       ar.h = r.height;
+      ar.span = pinned(ar.el, r);
       // Measure the phone where the layout puts it, then work out the offset to the middle of the screen.
       ar.phone.style.transform = '';
       const st = ar.stage.getBoundingClientRect(), pr = ar.phone.getBoundingClientRect();
@@ -204,6 +217,7 @@
       const lr = iot.lit.getBoundingClientRect(), gr = iot.glass.getBoundingClientRect();
       iot.top = r.top + sy;
       iot.h = r.height;
+      iot.span = pinned(iot.el, r);
       iot.litTop = lr.top - stageTop;
       iot.litH = lr.height;
       iot.glassTop = gr.top - stageTop;
@@ -225,7 +239,9 @@
     const pr = spin.pin.getBoundingClientRect();
     spin.top = pr.top + sy;
     spin.h = pr.height;
-    const size = Math.min(innerWidth, vh) * (phone ? .42 : .27);
+    // Desktop and tablets share one scale; only narrow phones get bigger prints. Judged by width, not the short side,
+    // so a desktop window that is short (a scaled display, a small window) keeps the desktop size.
+    const size = Math.min(innerWidth, vh) * (innerWidth < 600 ? .42 : .27);
     spin.radius = size * 2.3;
     spin.rise = size * .42;
     spin.stage.style.setProperty('--spin-size', size + 'px');
@@ -310,17 +326,18 @@
 
     for (const w of works) {
       if (!inView(w, y)) continue;
-      const p = clamp((y - w.top) / (w.h - vh));
+      const p = clamp((y - w.top) / (w.span - vh));
       const t = inOut(clamp(p / .6));
       w.screens.forEach((s, i) => {
-        const x = s.dir < 0 ? lerp(-78, -106, t) : lerp(-22, 6, t);
-        s.el.style.transform = `translate(${x}%,-50%) perspective(1400px) rotateY(${lerp(-s.dir * 28, -s.dir * 14, t)}deg) rotate(${lerp(s.dir * 7, s.dir * 3, t)}deg) scale(${lerp(phone ? .8 : .62, 1, t)})`;
+        // Stacked, the phones fill the width, so they part less and keep a little overlap.
+        const x = compact ? (s.dir < 0 ? lerp(-70, -92, t) : lerp(-30, -8, t)) : s.dir < 0 ? lerp(-78, -106, t) : lerp(-22, 6, t);
+        s.el.style.transform = `translate(${x}%,-50%) perspective(1400px) rotateY(${lerp(-s.dir * 28, -s.dir * 14, t)}deg) rotate(${lerp(s.dir * 7, s.dir * 3, t)}deg) scale(${lerp(compact ? .8 : .62, 1, t)})`;
         s.duo.style.opacity = 1 - clamp((p - .16 - i * .08) / .42);
       });
       for (const r of w.rows) {
         r.el.style.transform = `translateX(${r.dir > 0 ? lerp(2, -48, p) : lerp(-48, 2, p)}%)`;
       }
-      const o = clamp((p - (phone ? .25 : .55)) / .16);
+      const o = clamp((p - (compact ? .2 : .55)) / .16);
       for (const c of w.copies) {
         c.style.opacity = o;
         c.style.visibility = o === 0 ? 'hidden' : '';
@@ -329,7 +346,7 @@
     }
 
     if (iot && inView(iot, y)) {
-      const t = clamp((clamp((y - iot.top) / (iot.h - vh)) - .05) / .75);
+      const t = clamp((clamp((y - iot.top) / (iot.span - vh)) - .05) / .75);
       const lineY = t * vh;
       iot.line.style.transform = `translateY(${lineY}px)`;
       iot.line.style.opacity = t > 0 && t < 1 ? 1 : 0;
@@ -339,7 +356,7 @@
     }
 
     if (ar && inView(ar, y)) {
-      const p = clamp((y - ar.top) / (ar.h - vh)), b = ar.base;
+      const p = clamp((y - ar.top) / (ar.span - vh)), b = ar.base;
       // The phone comes into focus and settles; the brackets follow a beat behind and lock on.
       const t = inOut(clamp((p - .04) / .56)), k = inOut(clamp((p - .1) / .5));
       const scale = lerp(1.18, 1, t), ox = lerp(ar.dx, 0, t), oy = lerp(ar.dy, 0, t);

@@ -400,9 +400,8 @@ ol, ul { list-style: none; }
 .scan-lit { position: relative; }
 .scan-ghost { position: absolute; inset: 0; pointer-events: none; }
 .scan-ghost * { color: var(--ghost) !important; border-color: transparent !important; }
-.iot-label { color: var(--dim); font: 400 12px/1.4 var(--mono); }
 .scan-lit h3, .scan-ghost h3 {
-  margin-block: 14px 20px;
+  margin-block: 0 20px;
   font-size: clamp(1.875rem, 4.3vw, 4.5rem);
   font-weight: 700;
   line-height: 1.02;
@@ -445,8 +444,7 @@ ol, ul { list-style: none; }
 }
 .work-ar .screen-ar { --h: min(78vh, 150vw); position: relative; top: auto; left: auto; isolation: isolate; }
 .ar-copy { max-width: 40em; }
-.ar-label { color: var(--dim); font: 400 12px/1.4 var(--mono); }
-.ar-copy h3 { margin: 10px 0 14px; font-size: clamp(3rem, 8vw, 7.5rem); font-weight: 800; line-height: .9; letter-spacing: -.05em; }
+.ar-copy h3 { margin: 0 0 14px; font-size: clamp(3rem, 8vw, 7.5rem); font-weight: 800; line-height: .9; letter-spacing: -.05em; }
 .ar-sub { max-width: 34em; margin-bottom: 18px; color: var(--dim); font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.4; text-wrap: pretty; }
 .ar-desc { max-width: 36em; text-wrap: pretty; }
 .screen-placeholder { display: grid; place-items: center; height: 100%; padding: 20px; color: var(--dim); font: 400 12px/1.5 var(--mono); text-align: center; }
@@ -849,43 +847,59 @@ html:has(.sheet[open]) { overflow: hidden; }
   .about { display: block; }
   .about h2 { margin-bottom: 28px; }
   .about-copy { padding-right: 0; }
-  .work { height: 280svh; }
-  /* Phones have no side margins, so the name runs above and below the screens instead of behind them. */
-  .work-stage { --sh: min(48svh, 97vw, 100svh - 522px); }
-  .screen { --h: var(--sh); top: calc(134px + var(--sh) / 2); }
-  .marquee { display: contents; font-size: 18vw; }
-  .marquee-row { position: absolute; left: 0; top: 62px; }
-  .marquee-ghost { top: calc(140px + var(--sh)); }
-  .work-copy, .work-figs { position: absolute; }
-  .work-copy { left: var(--gutter); right: var(--gutter); width: auto; bottom: 88px; }
-  .work-figs { left: var(--gutter); right: var(--gutter); width: auto; bottom: 20px; grid-template-columns: 1fr 1fr; }
   .contact-links { margin-left: 0; width: 100%; }
-  /* Stacked: the phone takes what the long text leaves. */
-  .work-iot .work-stage { grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; row-gap: 14px; padding: 64px var(--gutter) 0; }
-  .work-iot .screen-solo { --h: min(100svh - 578px, 84vw); }
-  .work-ar .work-stage { grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; row-gap: 14px; padding: 64px var(--gutter) 0; }
-  .work-ar .screen-ar { --h: min(100svh - 530px, 84vw); order: -1; }
-  .ar-copy { width: 100%; max-width: none; }
-  .ar-copy h3 { margin: 4px 0 8px; font-size: 2.75rem; }
-  .ar-sub { margin-bottom: 10px; font-size: .875rem; line-height: 1.35; }
-  .ar-desc { font-size: .9375rem; line-height: 1.4; }
-  .scan-text { width: 100%; }
-  .scan-lit .work-role { margin: -2px 0 10px; }
-  .scan-lit h3, .scan-ghost h3 { margin-block: 6px 10px; font-size: 1.5rem; line-height: 1.05; letter-spacing: -.03em; }
-  .iot-desc { font-size: .9375rem; line-height: 1.4; }
-  .iot-steps { margin-top: 12px; }
-  .iot-steps li { font-size: .8125rem; }
 }
-/* Short phones: the IoT steps give way so its phone keeps a usable size. */
-@media (max-width: 799px) and (max-height: 760px) {
-  /* DominiMap: the name gives up its rows and the phones take what the text leaves. */
-  .work-stage { --sh: min(100svh - 470px, 97vw); }
-  .work .marquee { display: none; }
-  .screen { top: calc(72px + var(--sh) / 2); }
-  .work-iot .screen-solo { --h: min(100svh - 460px, 84vw); }
-  .work-ar .screen-ar { --h: min(100svh - 470px, 84vw); }
-  .ar-sub { display: none; }
-  .iot-steps { display: none; }
+/* ---------- Project stages on phones, portrait tablets and phones held sideways ----------
+   Rethought, not shrunk: the pinned screen holds only the phone and its effect, at full size, and the
+   project's text follows straight after it in the page. Script pads each article by its text's height. */
+@media (max-width: 799px), (max-width: 1199px) and (orientation: portrait), (max-height: 500px) {
+  /* content-box, so the text padding adds to the pin instead of eating into it. */
+  .work { box-sizing: content-box; height: 150vh; height: 150svh; padding-bottom: var(--text-h, 70svh); }
+  .work-iot { height: 160vh; height: 160svh; }
+  .work-ar { height: 150vh; height: 150svh; }
+  .work-stage { overflow-x: clip; overflow-y: visible; --sh: min(100svh - 150px, (100vw - 2 * var(--gutter)) * 1.15); }
+  /* DominiMap: the two phones fill the screen and part, with the name running behind them as on desktop. */
+  .screen { --h: var(--sh); top: calc(50% + 16px); }
+  .marquee { inset: auto 0; top: calc(50% + 16px); translate: 0 -50%; font-size: min(26vw, 30svh); }
+  .work-figs { display: none; }
+  .work-copy, .work-iot .scan-text, .work-ar .ar-copy {
+    position: absolute;
+    top: calc(100% + clamp(28px, 5vh, 48px));
+    bottom: auto;
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+    max-width: none;
+  }
+  .work-copy p, .iot-desc, .ar-desc, .ar-sub { max-width: 38em; }
+  /* IoT and Capstone: one phone, centred and as tall as the screen allows. */
+  .work-iot .work-stage, .work-ar .work-stage { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 56px 0 24px; }
+  .work-iot .screen-solo { --h: min(100svh - 120px, 188vw); }
+  .work-ar .screen-ar { --h: min(100svh - 150px, 188vw); }
+  .scan-lit h3, .scan-ghost h3 { font-size: clamp(1.75rem, 6vw, 2.75rem); line-height: 1.05; letter-spacing: -.035em; }
+  .ar-copy h3 { font-size: clamp(3rem, 14vw, 5.5rem); }
+}
+/* Portrait tablets have room to keep the text on screen with the phones, so it stays inside the pinned screen:
+   DominiMap's text and captions sit under its phones, and IoT and Capstone go side by side as on desktop. */
+@media (min-width: 600px) and (max-width: 1199px) and (orientation: portrait) and (min-height: 800px) {
+  .work-stage { --sh: min(100svh - 400px, 620px, (100vw - 2 * var(--gutter)) * 1.15); }
+  .screen, .marquee { top: calc(50% - 136px); }
+  .marquee { font-size: min(22vw, 24svh); }
+  .work-copy { top: auto; bottom: clamp(32px, 4vh, 56px); right: auto; width: min(34em, 58vw); }
+  .work-figs { display: grid; position: absolute; left: auto; right: var(--gutter); bottom: clamp(32px, 4vh, 56px); width: min(16em, 30vw); }
+  .work-iot .work-stage { grid-template-columns: auto minmax(0, 1fr); place-items: center start; column-gap: clamp(28px, 4vw, 48px); padding: 56px var(--gutter) 24px; }
+  .work-ar .work-stage { grid-template-columns: minmax(0, 1fr) auto; place-items: center start; column-gap: clamp(28px, 4vw, 48px); padding: 56px var(--gutter) 24px; }
+  .work-iot .scan-text, .work-ar .ar-copy { position: relative; top: auto; left: auto; right: auto; }
+  .work-iot .screen-solo, .work-ar .screen-ar { --h: min(60svh, 640px); }
+  .scan-lit h3, .scan-ghost h3 { font-size: clamp(1.75rem, 4.2vw, 2.5rem); }
+  .ar-copy h3 { font-size: clamp(3rem, 9vw, 5rem); }
+}
+@media (max-height: 500px) {
+  .work-stage { --sh: min(100svh - 72px, (100vw - 2 * var(--gutter)) * 1.15); }
+  .screen { top: calc(50% + 8px); }
+  .work-iot .work-stage, .work-ar .work-stage { padding: 40px 0 12px; }
+  .work-iot .screen-solo { --h: calc(100svh - 64px); }
+  .work-ar .screen-ar { --h: calc(100svh - 84px); }
 }
 /* Short laptops: the project text reaches higher, so the marquee rides higher to keep its bright row clear of the title. */
 @media (min-width: 800px) and (max-height: 820px) {
