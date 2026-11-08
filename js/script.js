@@ -42,6 +42,14 @@
     }
   });
 
+  /* ---------- Project details open in a native dialog: Esc, focus and screen readers come with it ---------- */
+  for (const btn of $$('[data-open]')) {
+    const sheet = document.getElementById(btn.dataset.open);
+    btn.addEventListener('click', () => sheet.showModal());
+    $('[data-close]', sheet).addEventListener('click', () => sheet.close());
+    sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
+  }
+
   /* ---------- The step labels follow the demo as it plays ---------- */
   const demo = $('.work-iot video'), stepList = $('.iot-steps'), steps = $$('li', stepList);
   demo.addEventListener('timeupdate', () => {
@@ -133,6 +141,7 @@
     const ghost = lit.cloneNode(true);
     ghost.className = 'scan-ghost';
     ghost.setAttribute('aria-hidden', 'true');
+    ghost.inert = true;
     ghost.querySelector('h3').removeAttribute('aria-label');
     lit.before(ghost);
     iot = { el: $('.work-iot'), stage: stageEl, lit, line: $('.scan-line'), video: $('.work-iot video'), glass: $('.work-iot .screen-glass'), duo: addDuo($('.screen-still')), top: 0, h: 0, litTop: 0, litH: 0, glassTop: 0, glassH: 0, scanned: false, visible: false };
@@ -301,6 +310,7 @@
       const o = clamp((p - (phone ? .25 : .55)) / .16);
       for (const c of w.copies) {
         c.style.opacity = o;
+        c.style.visibility = o === 0 ? 'hidden' : '';
         c.style.transform = `translateY(${lerp(16, 0, inOut(o))}px)`;
       }
     }

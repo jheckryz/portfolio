@@ -22,6 +22,7 @@
   --grain: .06;
   --gutter: clamp(16px, 2.8vw, 40px);
   --rail-room: 20px;
+  --rail-clear: 18px;
   --name-size: 21.75vw;
   --display: 'Host Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --mono: 'Geist Mono', ui-monospace, Menlo, monospace;
@@ -280,7 +281,7 @@ ol, ul { list-style: none; }
   font-weight: 500;
   letter-spacing: -.015em;
 }
-.about-copy { grid-column: 5 / -1; padding-right: 24px; }
+.about-copy { grid-column: 5 / -1; padding-right: var(--rail-clear); }
 .about-lead {
   font-size: clamp(1.75rem, 3.7vw, 3.5rem);
   font-weight: 500;
@@ -299,7 +300,9 @@ ol, ul { list-style: none; }
 
 /* ---------- 02 Works ---------- */
 .work { height: 320vh; height: 320svh; }
+/* Narrow laptops shrink the phones a little so the text beside them keeps a readable width. */
 .work-stage {
+  --h: min(74vh, 150vw, (100vw - 560px) * .9);
   position: sticky;
   top: 0;
   height: 100vh;
@@ -319,7 +322,6 @@ ol, ul { list-style: none; }
 .marquee-row { width: max-content; }
 .marquee-ghost { color: var(--ghost); }
 .screen {
-  --h: min(74vh, 150vw);
   top: 50%;
   left: 50%;
 }
@@ -361,7 +363,7 @@ ol, ul { list-style: none; }
 .screen-a { transform: translate(-106%, -50%) perspective(1400px) rotateY(14deg) rotate(-3deg); }
 .screen-b { transform: translate(6%, -50%) perspective(1400px) rotateY(-14deg) rotate(3deg); }
 .work-copy, .work-figs { position: absolute; bottom: clamp(28px, 7vh, 72px); }
-.work-copy { left: var(--gutter); width: min(19em, calc(50vw - 39vh - var(--gutter) - 24px)); }
+.work-copy { left: var(--gutter); width: min(19em, calc(50vw - var(--h) * .53 - var(--gutter) - 24px)); }
 .work-copy h3 {
   font-size: clamp(2rem, 3.4vw, 3.25rem);
   font-weight: 700;
@@ -372,7 +374,7 @@ ol, ul { list-style: none; }
 .work-copy p { color: var(--ink); text-wrap: pretty; }
 .work-figs {
   right: calc(var(--gutter) + 18px);
-  width: min(16em, calc(50vw - 39vh - var(--gutter) - 42px));
+  width: min(16em, calc(50vw - var(--h) * .53 - var(--gutter) - 42px));
   font-size: .9375rem;
   line-height: 1.35;
   display: grid;
@@ -385,7 +387,7 @@ ol, ul { list-style: none; }
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   column-gap: clamp(32px, 6vw, 96px);
-  padding-inline: clamp(var(--gutter), 8vw, 120px) calc(var(--gutter) + 18px);
+  padding-inline: var(--gutter) calc(var(--gutter) + var(--rail-clear));
 }
 .work-iot .screen-solo {
   --h: min(78vh, 150vw);
@@ -432,6 +434,9 @@ ol, ul { list-style: none; }
   background: linear-gradient(transparent, color-mix(in srgb, var(--crimson) 24%, transparent));
 }
 .work-copy h3 span, .scan-lit h3 span, .scan-ghost h3 span { display: inline-block; }
+/* The role line under a project title. */
+.work-role { margin: -4px 0 14px; color: var(--ink); font: 400 12px/1.4 var(--mono); }
+.scan-lit .work-role { margin: -6px 0 18px; }
 .work-figs span { display: block; margin-bottom: 2px; color: var(--dim); font: 400 12px/1.4 var(--mono); }
 
 /* ---------- 03 Stack ---------- */
@@ -534,7 +539,7 @@ img[src*='render'] + .wash { inset: 2%; }
 .frame p span { display: block; margin-bottom: 2px; color: var(--dim); font: 400 11px/1.35 var(--mono); font-variant-numeric: tabular-nums; }
 
 /* ---------- Project rows ---------- */
-.projects { padding: clamp(64px, 12vh, 120px) calc(var(--gutter) + 18px) 0 var(--gutter); }
+.projects { padding: clamp(64px, 12vh, 120px) calc(var(--gutter) + var(--rail-clear)) 0 var(--gutter); }
 .projects h3, .ledger h3 {
   margin-bottom: 20px;
   font-size: clamp(1.25rem, 1.8vw, 1.625rem);
@@ -601,7 +606,7 @@ img[src*='render'] + .wash { inset: 2%; }
 }
 
 /* ---------- 04 Certifications & Achievements ---------- */
-.certs { padding: clamp(96px, 16vh, 160px) calc(var(--gutter) + 18px) clamp(96px, 16vh, 160px) var(--gutter); }
+.certs { padding: clamp(96px, 16vh, 160px) calc(var(--gutter) + var(--rail-clear)) clamp(96px, 16vh, 160px) var(--gutter); }
 .certs h2 { margin-bottom: clamp(40px, 7vh, 72px); letter-spacing: -.03em; text-wrap: balance; }
 .ledgers { display: grid; gap: clamp(48px, 8vh, 80px); }
 .ledger table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -668,7 +673,58 @@ img[src*='render'] + .wash { inset: 2%; }
   font: 500 1rem/1 var(--display);
   transition: background-color 160ms ease, color 160ms ease, transform 160ms var(--ease-out);
 }
-.copy:active { transform: scale(.97); }
+.copy:active, .explore:active { transform: scale(.97); }
+/* Opens a project's details. */
+.explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-top: 18px;
+  padding: 0 18px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: 500 1rem/1 var(--display);
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms var(--ease-out);
+}
+.explore svg { transition: transform 200ms var(--ease-out); }
+
+/* Project details: a sheet that slides in from the right. */
+.sheet {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(560px, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: var(--ground);
+  color: var(--ink);
+  transform: translateX(100%);
+  transition: transform 320ms var(--ease-drawer), display 320ms allow-discrete, overlay 320ms allow-discrete;
+}
+.sheet[open] { transform: none; }
+@starting-style { .sheet[open] { transform: translateX(100%); } }
+.sheet::backdrop {
+  background: rgba(12, 10, 10, 0);
+  transition: background-color 320ms ease, display 320ms allow-discrete, overlay 320ms allow-discrete;
+}
+.sheet[open]::backdrop { background: rgba(12, 10, 10, .6); }
+@starting-style { .sheet[open]::backdrop { background: rgba(12, 10, 10, 0); } }
+/* The body holds the padding, so a click that lands on the dialog itself is always the backdrop. */
+.sheet-body { height: 100%; overflow-y: auto; padding: clamp(20px, 4vw, 44px) calc(var(--gutter) + 4px); }
+html:has(.sheet[open]) { overflow: hidden; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: clamp(24px, 5vh, 48px); }
+.sheet-label { color: var(--dim); font: 400 12px/1.4 var(--mono); }
+.sheet-close { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; transition: background-color 160ms ease, color 160ms ease, transform 160ms var(--ease-out); }
+.sheet-close:active { transform: scale(.97); }
+.sheet h2 { margin-bottom: clamp(24px, 4vh, 36px); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; text-wrap: balance; }
+.sheet .row-fields > div { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
 .copy-status { min-height: 1.5em; }
 .contact-links { display: flex; gap: 28px; margin-left: auto; }
 .contact-links a {
@@ -691,6 +747,8 @@ img[src*='render'] + .wash { inset: 2%; }
 @media (hover: hover) and (pointer: fine) {
   .contact-email:hover { text-decoration-color: currentColor; }
   .copy:hover { background: #fff; color: var(--crimson); }
+  .explore:hover, .sheet-close:hover { background: var(--ink); color: var(--ground); }
+  .explore:hover svg { transform: translateX(3px); }
   .contact-links a:hover svg { transform: translate(2px, -2px); }
 }
 
@@ -729,7 +787,7 @@ img[src*='render'] + .wash { inset: 2%; }
 
 /* ---------- Phone and small tablet ---------- */
 @media (max-width: 799px) {
-  :root { --name-size: 21.2vw; --rail-room: 0px; }
+  :root { --name-size: 21.2vw; --rail-room: 0px; --rail-clear: 0px; }
   .tab::before, .tab::after { width: 34px; background-size: 100% 100%; }
   .hero { height: 200svh; }
   /* The intro and button sit above the plate here, so it hangs from the name instead of the centre. */
@@ -762,7 +820,7 @@ img[src*='render'] + .wash { inset: 2%; }
   .about-copy { padding-right: 0; }
   .work { height: 280svh; }
   /* Phones have no side margins, so the name runs above and below the screens instead of behind them. */
-  .work-stage { --sh: min(48svh, 97vw); }
+  .work-stage { --sh: min(48svh, 97vw, 100svh - 522px); }
   .screen { --h: var(--sh); top: calc(134px + var(--sh) / 2); }
   .marquee { display: contents; font-size: 18vw; }
   .marquee-row { position: absolute; left: 0; top: 62px; }
@@ -773,17 +831,26 @@ img[src*='render'] + .wash { inset: 2%; }
   .contact-links { margin-left: 0; width: 100%; }
   /* Stacked: the phone takes what the long text leaves. */
   .work-iot .work-stage { grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; row-gap: 14px; padding: 64px var(--gutter) 0; }
-  .work-iot .screen-solo { --h: min(100svh - 516px, 84vw); }
+  .work-iot .screen-solo { --h: min(100svh - 578px, 84vw); }
   .scan-text { width: 100%; }
+  .scan-lit .work-role { margin: -2px 0 10px; }
   .scan-lit h3, .scan-ghost h3 { margin-block: 6px 10px; font-size: 1.5rem; line-height: 1.05; letter-spacing: -.03em; }
   .iot-desc { font-size: .9375rem; line-height: 1.4; }
   .iot-steps { margin-top: 12px; }
   .iot-steps li { font-size: .8125rem; }
 }
-/* Short phones: the steps give way so the phone keeps a usable size. */
+/* Short phones: the IoT steps give way so its phone keeps a usable size. */
 @media (max-width: 799px) and (max-height: 760px) {
-  .work-iot .screen-solo { --h: min(100svh - 416px, 84vw); }
+  /* DominiMap: the name gives up its rows and the phones take what the text leaves. */
+  .work-stage { --sh: min(100svh - 470px, 97vw); }
+  .work .marquee { display: none; }
+  .screen { top: calc(72px + var(--sh) / 2); }
+  .work-iot .screen-solo { --h: min(100svh - 436px, 84vw); }
   .iot-steps { display: none; }
+}
+/* Short laptops: the project text reaches higher, so the marquee rides higher to keep its bright row clear of the title. */
+@media (min-width: 800px) and (max-height: 820px) {
+  .marquee { translate: 0 -64%; }
 }
 /* Five links and the logo only just fit a phone, so spacing tightens before anything is dropped. */
 @media (max-width: 430px) {
@@ -806,7 +873,7 @@ img[src*='render'] + .wash { inset: 2%; }
   .hero, .work, .work-iot { height: auto; }
   .hero-stage, .work-stage { position: relative; }
   .duo, .wash { display: none; }
-  .tab, .topbar::before, .tab-mark { transition: none !important; }
+  .tab, .topbar::before, .tab-mark, .sheet, .sheet::backdrop { transition: none !important; }
   .plate:hover, .screen:hover { scale: none; }
   .frame:hover .print { translate: none; }
   .frame:hover .print img { scale: none; }
